@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Photo Clinic</title>
+<meta name="description" content="Fix your Google Photos download and keep Apple Photos healthy. Free, private, runs on your Mac.">
+<style>
+:root{--bg:#fbfaff;--card:#fff;--ink:#1b1830;--mute:#5f5b78;--line:#e3e0f2;--acc:#5b3df5;--acc2:#e23fa0}
+@media (prefers-color-scheme:dark){:root{--bg:#14121f;--card:#1e1b2e;--ink:#f3f1ff;--mute:#a9a5c4;--line:#322e4a;--acc:#8b74ff;--acc2:#ff6fbd}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 -apple-system,system-ui,"Segoe UI",sans-serif}
+main{max-width:760px;margin:0 auto;padding:0 20px 60px}
+.hero{padding:64px 0 32px;text-align:center}
+h1{font-size:clamp(34px,7vw,52px);line-height:1.1;margin:0 0 14px}
+h1 span{background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:20px;color:var(--mute);margin:0 auto 28px;max-width:34em}
+.btn{display:inline-block;padding:14px 28px;border-radius:999px;background:linear-gradient(90deg,var(--acc),var(--acc2));color:#fff;font-weight:800;font-size:18px;text-decoration:none}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.note{color:var(--mute);font-size:14px;margin-top:12px}
+h2{font-size:24px;margin:44px 0 14px}
+.steps{display:grid;gap:12px;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px 16px 62px;position:relative}
+.steps li::before{content:counter(s);position:absolute;left:18px;top:14px;width:32px;height:32px;border-radius:50%;background:var(--acc);color:#fff;font-weight:800;display:grid;place-items:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.card b{display:block;margin-bottom:4px}
+.card span{color:var(--mute);font-size:15px}
+footer{margin-top:48px;color:var(--mute);font-size:14px;text-align:center}
+a{color:var(--acc)}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>Get your photos <span>out of the shoebox</span></h1>
+<p class="lead">Photo Clinic fixes the dates, places and captions that Google Photos strips out of your download, and keeps an eye on Apple Photos and iCloud.</p>
+<a class="btn" href="https://github.com/daviddef/photoclinic-releases/releases/latest">Download for Mac</a>
+<p class="note">Free &middot; Apple silicon Macs &middot; signed and checked by Apple</p>
+</section>
+
+<h2>How it works</h2>
+<ol class="steps">
+<li><b>Point it at your Google Takeout.</b> Zip files work as they are, so there is no need to unzip 50&nbsp;GB first.</li>
+<li><b>Look at the preview.</b> Nothing is changed until you say so, and your originals are copied, not touched.</li>
+<li><b>Press go.</b> Every photo gets its real date, place and caption back, ready for Apple Photos.</li>
+</ol>
+
+<h2>What else it does</h2>
+<div class="grid">
+<div class="card"><b>Combine libraries</b><span>Merge folders, remove exact copies and find look-alike photos, with a side-by-side review.</span></div>
+<div class="card"><b>Check Apple Photos</b><span>See whether everything has reached iCloud, what is stuck and why, in plain words.</span></div>
+<div class="card"><b>Photos Health</b><span>A reading every 15 minutes shows if your library is syncing, stalled or erroring.</span></div>
+<div class="card"><b>Tidy up</b><span>Convert old videos to MP4, clear junk and empty folders, all verified before anything is replaced.</span></div>
+</div>
+
+<h2>Private by design</h2>
+<p>Photo Clinic runs on your Mac. There is no account, nothing is uploaded and nothing phones home. It never changes your Apple Photos library; it only reads it.</p>
+
+<footer>
+<p>Photo Clinic is free and open source (MIT licence). It is an independent project and is not affiliated with Google or Apple.</p>
+<p><a href="https://github.com/daviddef/photoclinic-releases/releases/latest">Downloads</a></p>
+</footer>
+</main>
+</body>
+</html>
