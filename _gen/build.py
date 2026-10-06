@@ -216,7 +216,7 @@ page("problems.html", "Find what is not right", "Photo Clinic reads the hidden P
 
 # ---------------------------------------------------------------- tidy
 b = head("Combine and tidy", "Get the whole library in order", "Merge folders, remove copies, review look-alikes and clean up. Nothing is deleted without a preview and a way back.")
-b += """<h2>Library health score</h2>
+b += """<h2>Health score for your photos</h2>
 <p class="sub">A score out of 100 with a plain list of what is wrong, and a button to the tool that fixes it. It keeps a history so you can see whether your library is getting tidier.</p>
 %s
 <h2>Combine</h2>
@@ -229,7 +229,7 @@ b += """<h2>Library health score</h2>
  cards([("Merge folders", "Combine libraries into one. Same-name folders are merged, and exact copies are dropped."), ("Review look-alikes", "The same photo at different sizes or re-saved. Shown side by side with a suggested keeper. Never deleted automatically."), ("Keeper rules", "Choose which copy to keep: favourite, edited, resolution, size, metadata, album. Bursts are kept by default."), ("Compare libraries", "See how alike two libraries are and which copy a merge would keep, before you merge.")]),
  cards([("Convert old videos", "Turn old formats into MP4. Each conversion is verified before the original is replaced."), ("Junk and empty folders", "Clear leftover files and empty folders, and tidy odd names."), ("Blurry and screenshots", "Spot blurry pictures and screenshots so your keeper rules can prefer the sharp one."), ("Smart folder consolidation", "Fold look-alike folders together safely.")]),
  cta(), nextlinks(("problems.html", "Find what is not right"), ("apple-photos.html", "Move to Apple Photos")))
-page("tidy.html", "Combine and tidy", "Merge libraries, remove duplicates, review look-alike photos, convert old videos and get a library health score.", b, "tidy.html")
+page("tidy.html", "Combine and tidy", "Merge libraries, remove duplicates, review look-alike photos, convert old videos and get a photo health score.", b, "tidy.html")
 
 # ---------------------------------------------------------------- apple photos
 b = head("Move to Apple Photos", "Send it slowly, safely", "Importing a huge library all at once can fill your Mac and confuse iCloud. Photo Clinic sends it in careful batches and waits for iCloud to keep up.")
@@ -296,7 +296,7 @@ b += release("1.0.1", "6 October 2026", "v1.0.1", "The first release: signed and
   "<b>Dates and places from every clue:</b> file names, folders, neighbouring photos and GPX tracks, plus offline place names for about 144,000 towns and cities.",
   "<b>Monitor your library:</b> a Photos Health tab takes a reading every 15 minutes while the app is open, with trends and a plain verdict. If macOS blocks it, it says which permission to give and opens the settings.",
   "<b>Find what is not right:</b> upload progress, log reading, live watch, a sync meter, a disk-space check, about 170 known problems and 17 step-by-step fix guides.",
-  "<b>Combine and tidy:</b> merge folders, remove exact copies, review look-alikes, convert old videos to MP4 with verification, and a library health score.",
+  "<b>Combine and tidy:</b> merge folders, remove exact copies, review look-alikes, convert old videos to MP4 with verification, and a photo health score.",
   "<b>Move to Apple Photos</b> in batches, oldest first, waiting for iCloud between batches.",
   "<b>Five styles</b> from Safest to I like risk, preview first, copy by default, stop and undo, and reports for every run."]), latest=False)
 b += '<div class="callout"><b>Updating.</b> The app checks for updates and shows a banner when one is ready. The packaged Mac app asks you to download the newest version and replace the old one. <a href="%s">Download it here</a>.</div>' % DL
