@@ -1,6 +1,6 @@
 import html, pathlib
 OUT = pathlib.Path(__file__).resolve().parent.parent
-DL = "https://github.com/daviddef/photoclinic-releases/releases/latest"
+DL = "https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg"   # a fixed-name copy of the newest dmg: the click starts the download
 NAV = [("fix-takeout.html", "Clean up Takeout"), ("monitor.html", "Monitor"), ("problems.html", "Find problems"), ("tidy.html", "Combine &amp; tidy"), ("apple-photos.html", "Apple Photos"), ("safety.html", "Safety"), ("versions.html", "Versions")]
 
 CSS = """:root{--bg:#fbfaff;--card:#fff;--ink:#1b1830;--mute:#5f5b78;--line:#e3e0f2;--soft:#f1eefe;--acc:#5b3df5;--acc2:#e23fa0;--ok:#15803d}
@@ -87,7 +87,7 @@ def page(fname, title, desc, body, cur=None):
 %s
 <footer>
 <p>Photo Clinic is free to use, under the MIT licence. It is an independent project and is not affiliated with Google or Apple. Google, Google Photos, Apple, iCloud, iPhone and macOS are trademarks of their owners.</p>
-<p><a href="%s">Download</a> &middot; <a href="https://github.com/daviddef/photoclinic-releases">Release notes</a> &middot; <a href="safety.html">Safety</a> &middot; <a href="versions.html">Versions</a></p>
+<p><a href="%s">Download</a> &middot; <a href="versions.html">Release notes</a> &middot; <a href="safety.html">Safety</a> &middot; <a href="versions.html">Versions</a></p>
 </footer>
 </main>
 </body>
@@ -119,7 +119,7 @@ home = """<section class="hero">
 <h1>Get your photos <span>out of the shoebox</span></h1>
 <p class="lead">Photo Clinic cleans up your Google Photos download, watches over Apple Photos and iCloud, and tells you in plain words what is wrong and what to do about it.</p>
 <a class="btn" href="%s">Download for Mac</a>
-<p class="note">Free &middot; Apple silicon Macs &middot; signed and checked by Apple &middot; nothing is uploaded</p>
+<p class="note">Free &middot; 66&nbsp;MB &middot; Apple silicon Macs &middot; signed and checked by Apple &middot; nothing is uploaded</p>
 </div>
 <figure><img class="shot" src="img/home.jpg" width="620" height="940" alt="The Photo Clinic home screen"><figcaption>The home screen</figcaption></figure>
 </section>
@@ -283,7 +283,7 @@ page("safety.html", "Safe and private", "How Photo Clinic keeps your photos safe
 REL = "https://github.com/daviddef/photoclinic-releases/releases/tag/"
 def release(ver, date, tag, note, items, latest=False):
     badge = ' <span class="badge">Latest</span>' if latest else ""
-    return '<section class="rel" id="v%s"><div class="relhead"><h2>%s%s</h2><span class="reldate">%s</span></div><p class="sub">%s</p>%s<p><a href="%s%s">Download and release notes on GitHub &rarr;</a></p></section>' % (ver, ver, badge, date, note, items, REL, tag)
+    return '<section class="rel" id="v%s"><div class="relhead"><h2>%s%s</h2><span class="reldate">%s</span></div><p class="sub">%s</p>%s<p><a href="https://github.com/daviddef/photoclinic-releases/releases/download/%s/PhotoClinic-%s-arm64.dmg">Download %s</a></p></section>' % (ver, ver, badge, date, note, items, tag, ver, ver)
 
 b = head("Versions", "What is new in each version", "Every release, newest first. The app tells you when an update is ready, so you never have to check.")
 b += release("1.0.1", "6 October 2026", "v1.0.1", "The first release: signed and notarised for Apple silicon Macs.", ticks([
@@ -294,7 +294,7 @@ b += release("1.0.1", "6 October 2026", "v1.0.1", "The first release: signed and
   "<b>Combine and tidy:</b> merge folders, remove exact copies, review look-alikes, convert old videos to MP4 with verification, and a library health score.",
   "<b>Move to Apple Photos</b> in batches, oldest first, waiting for iCloud between batches.",
   "<b>Five styles</b> from Safest to I like risk, preview first, copy by default, stop and undo, and reports for every run."]), latest=True)
-b += '<div class="callout"><b>Updating.</b> The app checks for updates and shows a banner when one is ready. The packaged Mac app asks you to download the newest version from the <a href="%s">downloads page</a> and replace the old one.</div>' % DL
+b += '<div class="callout"><b>Updating.</b> The app checks for updates and shows a banner when one is ready. The packaged Mac app asks you to download the newest version and replace the old one. <a href="%s">Download it here</a>.</div>' % DL
 b += cta()
 page("versions.html", "Versions", "Every Photo Clinic release, newest first, with what is new in each.", b, "versions.html")
 
