@@ -1,7 +1,7 @@
 import html, pathlib
 OUT = pathlib.Path(__file__).resolve().parent.parent
 DL = "https://github.com/daviddef/photoclinic-releases/releases/latest"
-NAV = [("fix-takeout.html", "Clean up Takeout"), ("monitor.html", "Monitor"), ("problems.html", "Find problems"), ("tidy.html", "Combine &amp; tidy"), ("apple-photos.html", "Apple Photos"), ("safety.html", "Safety")]
+NAV = [("fix-takeout.html", "Clean up Takeout"), ("monitor.html", "Monitor"), ("problems.html", "Find problems"), ("tidy.html", "Combine &amp; tidy"), ("apple-photos.html", "Apple Photos"), ("safety.html", "Safety"), ("versions.html", "Versions")]
 
 CSS = """:root{--bg:#fbfaff;--card:#fff;--ink:#1b1830;--mute:#5f5b78;--line:#e3e0f2;--soft:#f1eefe;--acc:#5b3df5;--acc2:#e23fa0;--ok:#15803d}
 @media (prefers-color-scheme:dark){:root{--bg:#14121f;--card:#1e1b2e;--ink:#f3f1ff;--mute:#a9a5c4;--line:#322e4a;--soft:#25213a;--acc:#8b74ff;--acc2:#ff6fbd;--ok:#4ade80}}
@@ -54,6 +54,10 @@ ul.bad li::before{content:"\\2715";color:var(--acc2)}
 details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:10px 0}
 summary{cursor:pointer;font-weight:700}
 details p{margin:8px 0 0;color:var(--mute)}
+.badge{display:inline-block;vertical-align:middle;font-size:12px;font-weight:800;padding:2px 10px;border-radius:999px;background:var(--acc);color:#fff;margin-left:8px;letter-spacing:.04em}
+.relhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.reldate{color:var(--mute);font-size:14px}
+.rel{border-top:1px solid var(--line);margin-top:32px;padding-top:4px}
 .cta{text-align:center;margin-top:56px;padding:32px 20px;background:var(--soft);border:1px solid var(--line);border-radius:22px}
 .cta h2{margin-top:0}
 .next{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:40px;font-weight:700}
@@ -83,7 +87,7 @@ def page(fname, title, desc, body, cur=None):
 %s
 <footer>
 <p>Photo Clinic is free and open source (MIT licence). It is an independent project and is not affiliated with Google or Apple. Google, Google Photos, Apple, iCloud, iPhone and macOS are trademarks of their owners.</p>
-<p><a href="%s">Download</a> &middot; <a href="https://github.com/daviddef/photoclinic-releases">Release notes</a> &middot; <a href="safety.html">Safety</a></p>
+<p><a href="%s">Download</a> &middot; <a href="https://github.com/daviddef/photoclinic-releases">Release notes</a> &middot; <a href="safety.html">Safety</a> &middot; <a href="versions.html">Versions</a></p>
 </footer>
 </main>
 </body>
@@ -266,6 +270,33 @@ b += """<h2>Safe</h2>
  ticks(["<b>Full Disk Access</b> to read the Photos database for the checks and the monitor.", "<b>Photos control</b> if you use the send-to-Photos step.", "macOS asks the first time, and the app explains what to do if it is missing."]),
  cta(), nextlinks(("apple-photos.html", "Move to Apple Photos"), None))
 page("safety.html", "Safe and private", "How Photo Clinic keeps your photos safe: preview first, copies by default, undo, and nothing leaves your Mac.", b, "safety.html")
+
+
+# ---------------------------------------------------------------- versions
+REL = "https://github.com/daviddef/photoclinic-releases/releases/tag/"
+def release(ver, date, tag, note, items, latest=False):
+    badge = ' <span class="badge">Latest</span>' if latest else ""
+    return '<section class="rel" id="v%s"><div class="relhead"><h2>%s%s</h2><span class="reldate">%s</span></div><p class="sub">%s</p>%s<p><a href="%s%s">Download and release notes on GitHub &rarr;</a></p></section>' % (ver, ver, badge, date, note, items, REL, tag)
+
+b = head("Versions", "What is new in each version", "Every release, newest first. The app tells you when an update is ready, so you never have to check.")
+b += release("1.0.1", "6 October 2026", "v1.0.1", "Shoebox becomes Photo Clinic, and the monitor moves into the app.", ticks([
+  "<b>New name.</b> Shoebox is now Photo Clinic, with a new app id. macOS will ask again for Full Disk Access, Photos and Automation the first time you open it.",
+  "<b>Photos Health tab.</b> A reading every 15 minutes while the app is open, with trends and a plain verdict: healthy, downloading, merging, waiting on sync, errors or stuck.",
+  "<b>Tells you when macOS is blocking it.</b> If a permission is missing, it names the program, shows since when, and opens the settings page for you.",
+  "<b>Check Photos remembers.</b> The iCloud queue check now compares against the Photos Health history, so you no longer have to wait hours between two taps.",
+  "<b>A calmer header.</b> An arrow between where your photos come from and where they go, and a star icon for favourites.",
+  "<b>A simpler five-styles table.</b> It opens showing only what differs between the styles.",
+  "<b>Clearer updates.</b> The update banner now says why an update was refused, for example when a job is still running."]), latest=True)
+b += release("1.0.0", "5 October 2026", "v1.0.0", "The first signed and notarised release, published under the name Shoebox.", ticks([
+  "<b>Fix a Google Takeout:</b> dates, places, captions, people and favourites restored from Google's files, read straight from zips, with time zones, Live Photos, edited copies, albums and Motion Photos handled.",
+  "<b>Dates and places from every clue:</b> file names, folders, neighbouring photos and GPX tracks, plus offline place names for about 144,000 towns and cities.",
+  "<b>Combine and tidy:</b> merge folders, remove exact copies, review look-alikes, convert old videos to MP4 with verification, and a library health score.",
+  "<b>Check Apple Photos and iCloud:</b> upload progress, log reading, live watch, a sync meter, a disk-space check, about 160 known problems and 17 step-by-step fix guides.",
+  "<b>Move to Apple Photos</b> in batches, oldest first, waiting for iCloud between batches.",
+  "<b>Five styles</b> from Safest to I like risk, preview first, copy by default, stop and undo, reports for every run."]))
+b += '<div class="callout"><b>Updating.</b> The app checks for updates and shows a banner when one is ready. The packaged Mac app asks you to download the newest version from the <a href="%s">downloads page</a> and replace the old one.</div>' % DL
+b += cta()
+page("versions.html", "Versions", "Every Photo Clinic release, newest first, with what is new in each.", b, "versions.html")
 
 (OUT / "style.css").write_text(CSS, encoding="utf-8")
 print("built")
