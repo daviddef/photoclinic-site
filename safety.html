@@ -17,7 +17,13 @@
 <h2>Permissions it asks for</h2>
 <ul class="ticks "><li><b>Full Disk Access</b> to read the Photos database for the checks and the monitor.</li><li><b>Photos control</b> if you use the send-to-Photos step.</li><li>macOS asks the first time, and the app explains what to do if it is missing.</li></ul>
 <div class="callout"><b>Please still back up your photos first.</b> Photo Clinic can move or delete files if you ask it to. It is provided as is, with no warranty. Keep your original Takeout until you have checked the result in Photos and iCloud.</div>
+<h2 id="app-store">Why is it not in the Mac App Store?</h2>
+<p class="sub">Because the App Store would make it do less. Apps there must run inside Apple's <b>sandbox</b>, which walls an app off from the rest of your Mac. Photo Clinic's whole job is to reach across that wall:</p>
+<ul class="ticks "><li>It reads the <b>Photos library and its database</b>, which belong to another app, to count uploads and check sync.</li><li>It reads <b>any folder you choose</b>, including whole drives and Takeout zips.</li><li>It reads the <b>system log</b> to explain Photos and iCloud problems.</li><li>It <b>controls Photos</b> to import in batches.</li><li>It runs helper programs (ExifTool and ffmpeg) to read and write photo details and convert video.</li></ul>
+<p>That is why Photo Clinic is downloaded from here instead. It is still <b>signed with a registered Apple developer ID and checked (notarised) by Apple</b>, so macOS opens it without scary warnings. Being outside the App Store also keeps it free, open source and simple to update.</p>
+<div class="callout"><b>Could that change?</b> A cut-down App Store version, with fewer checks and no Photos monitoring, is possible if enough people ask. For now we would rather do the whole job well.</div>
 <h2>Questions</h2>
+<details><summary>Why is it not in the Mac App Store?</summary><p>The App Store requires apps to run in a sandbox, and Photo Clinic needs to read your Photos library, any folder you pick and the system log. <a href="#app-store">Read the full answer</a>.</p></details>
 <details><summary>Is it really free?</summary><p>Yes. It is free and open source under the MIT licence. There is no account and no subscription.</p></details>
 <details><summary>Which Macs does it run on?</summary><p>Apple silicon Macs today. It needs no extra software. An Intel version is not available yet.</p></details>
 <details><summary>Does it work on Windows or iPhone?</summary><p>Not yet. Photo Clinic is a Mac app, and the Apple Photos checks only make sense on a Mac.</p></details>
