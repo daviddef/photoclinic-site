@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clean up your Google Takeout - Photo Clinic</title>
+<meta name="description" content="How Photo Clinic restores dates, places, captions, Live Photos and albums in a Google Takeout.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div><b><a href="index.html" style="text-decoration:none;color:inherit">Photo Clinic</a></b><a href="fix-takeout.html" aria-current="page">Clean up Takeout</a><a href="monitor.html">Monitor</a><a href="problems.html">Find problems</a><a href="tidy.html">Combine &amp; tidy</a><a href="apple-photos.html">Apple Photos</a><a href="safety.html">Safety</a></div></nav>
+<main>
+<p class="crumb"><a href="index.html">&larr; Photo Clinic</a></p><div class="phead"><div><p class="kicker">Clean up your Google Takeout</p><h1>Give every photo its story back</h1><p class="lead">Google keeps the dates, places and captions in separate files and leaves the photos themselves bare. Photo Clinic reads those files and writes everything back.</p><a class="btn" href="https://github.com/daviddef/photoclinic-releases/releases/latest">Download for Mac</a></div><figure><img class="shot" src="img/easy-fix.jpg" width="620" height="940" alt="The Easy fix screen with the five styles"><figcaption>Easy fix: choose a style, then look at your files</figcaption></figure></div><h2>What goes wrong in a Takeout</h2>
+<ul class="ticks bad"><li>Every photo shows the day you <b>downloaded</b> it, not the day you took it.</li><li>Locations and captions are missing from the pictures.</li><li>Live Photos arrive split into a picture and a separate video.</li><li>Google's <code>-edited</code> copies sit next to the originals.</li><li>Albums become folders full of duplicate copies.</li><li>Hundreds of <code>.json</code> files clutter the folders, and names get cut off or numbered <code>(1)</code>.</li></ul>
+<h2>What Photo Clinic puts right</h2>
+<div class="pair"><div class="card"><h3>Dates, places, captions</h3><p>Restored from Google's own files: dates, locations, captions, people and favourites, across many zips and batches.</p></div><div class="card"><h3>Time zones done properly</h3><p>Google stores times in UTC. Photo Clinic writes local time with the right offset, using the photo's location or this Mac's time zone.</p></div><div class="card"><h3>Live Photos back together</h3><p>The picture and its video are paired again so Apple Photos treats them as one.</p></div><div class="card"><h3>Edited copies matched</h3><p>Choose to keep both, keep the edit or keep the original.</p></div><div class="card"><h3>Albums kept</h3><p>One copy of each photo is kept, and the albums are written out as keywords and a list so nothing is lost.</p></div><div class="card"><h3>Motion Photos</h3><p>The video hidden inside a Google Motion Photo is pulled out and saved as a normal MP4.</p></div></div>
+<h2>Dates and places, even when Google has none</h2>
+<ul class="ticks "><li><b>Missing dates rebuilt</b> from the file name (<code>IMG_20190704_&hellip;</code>, <code>PXL_&hellip;</code>, screenshots), neighbouring photo numbers, the folder name and the file's own time. Each guess has a confidence you can review.</li><li><b>Places filled in</b> from nearby photos or a GPX track, or guessed from a folder name like <code>Johannesburg</code>. Guesses are labelled as guesses and never replace a real location.</li><li><b>Place names written in</b> (city, region, country) from an offline list of about 144,000 towns and cities. No internet needed.</li><li><b>Wrong dates flagged</b>, such as future dates or a year that disagrees with the folder.</li></ul>
+<h2>Choose how careful to be</h2>
+<p class="sub">Five styles set every option for you. <b>Balanced</b> is the recommended mix.</p>
+<div class="phead" style="padding-top:0"><div><ul class="ticks "><li>Every style starts as a <b>preview</b>. Nothing changes until you untick it and press start.</li><li>Compare all five in one table, and save your own settings as a favourite with the star.</li></ul></div><figure><img class="shot" src="img/styles.jpg" width="620" height="940" loading="lazy" alt="A table comparing what the five styles turn on and off"><figcaption>All five styles side by side</figcaption></figure></div>
+<h2>See it before it happens</h2>
+<ul class="ticks "><li>A <b>pre-flight check</b> tells you what is in your Takeout before anything runs.</li><li>A <b>before-and-after storyboard</b> shows a few of your real photos with what changes in the date, place and caption.</li><li>Your originals are <b>copied, not touched</b>.</li></ul>
+<div class="callout"><b>Good to know.</b> Some old video formats (AVI, MKV, WMV, MPG, MTS) and BMP files cannot hold this kind of information, so those only get their file date fixed.</div>
+<div class="cta"><h2>Look at your library for free</h2><p class="sub">Download it, point it at your photos, and read the preview. That costs nothing and changes nothing.</p><a class="btn" href="https://github.com/daviddef/photoclinic-releases/releases/latest">Download for Mac</a><p class="note">Free &middot; Apple silicon Macs &middot; signed and checked by Apple</p></div><div class="next"><span></span><a href="monitor.html">Monitor your Photos library &rarr;</a></div>
+<footer>
+<p>Photo Clinic is free and open source (MIT licence). It is an independent project and is not affiliated with Google or Apple. Google, Google Photos, Apple, iCloud, iPhone and macOS are trademarks of their owners.</p>
+<p><a href="https://github.com/daviddef/photoclinic-releases/releases/latest">Download</a> &middot; <a href="https://github.com/daviddef/photoclinic-releases">Release notes</a> &middot; <a href="safety.html">Safety</a></p>
+</footer>
+</main>
+</body>
+</html>
