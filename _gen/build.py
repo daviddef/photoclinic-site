@@ -286,20 +286,14 @@ def release(ver, date, tag, note, items, latest=False):
     return '<section class="rel" id="v%s"><div class="relhead"><h2>%s%s</h2><span class="reldate">%s</span></div><p class="sub">%s</p>%s<p><a href="%s%s">Download and release notes on GitHub &rarr;</a></p></section>' % (ver, ver, badge, date, note, items, REL, tag)
 
 b = head("Versions", "What is new in each version", "Every release, newest first. The app tells you when an update is ready, so you never have to check.")
-b += release("1.0.1", "6 October 2026", "v1.0.1", "The monitor moves into the app, with a calmer look.", ticks([
-  "<b>Photos Health tab.</b> A reading every 15 minutes while the app is open, with trends and a plain verdict: healthy, downloading, merging, waiting on sync, errors or stuck.",
-  "<b>Tells you when macOS is blocking it.</b> If a permission is missing, it names the program, shows since when, and opens the settings page for you.",
-  "<b>Check Photos remembers.</b> The iCloud queue check now compares against the Photos Health history, so you no longer have to wait hours between two taps.",
-  "<b>A calmer header.</b> An arrow between where your photos come from and where they go, and a star icon for favourites.",
-  "<b>A simpler five-styles table.</b> It opens showing only what differs between the styles.",
-  "<b>Clearer updates.</b> The update banner now says why an update was refused, for example when a job is still running."]), latest=True)
-b += release("1.0.0", "5 October 2026", "v1.0.0", "The first signed and notarised release.", ticks([
+b += release("1.0.1", "6 October 2026", "v1.0.1", "The first release: signed and notarised for Apple silicon Macs.", ticks([
   "<b>Fix a Google Takeout:</b> dates, places, captions, people and favourites restored from Google's files, read straight from zips, with time zones, Live Photos, edited copies, albums and Motion Photos handled.",
   "<b>Dates and places from every clue:</b> file names, folders, neighbouring photos and GPX tracks, plus offline place names for about 144,000 towns and cities.",
+  "<b>Monitor your library:</b> a Photos Health tab takes a reading every 15 minutes while the app is open, with trends and a plain verdict. If macOS blocks it, it says which permission to give and opens the settings.",
+  "<b>Find what is not right:</b> upload progress, log reading, live watch, a sync meter, a disk-space check, about 160 known problems and 17 step-by-step fix guides.",
   "<b>Combine and tidy:</b> merge folders, remove exact copies, review look-alikes, convert old videos to MP4 with verification, and a library health score.",
-  "<b>Check Apple Photos and iCloud:</b> upload progress, log reading, live watch, a sync meter, a disk-space check, about 160 known problems and 17 step-by-step fix guides.",
   "<b>Move to Apple Photos</b> in batches, oldest first, waiting for iCloud between batches.",
-  "<b>Five styles</b> from Safest to I like risk, preview first, copy by default, stop and undo, reports for every run."]))
+  "<b>Five styles</b> from Safest to I like risk, preview first, copy by default, stop and undo, and reports for every run."]), latest=True)
 b += '<div class="callout"><b>Updating.</b> The app checks for updates and shows a banner when one is ready. The packaged Mac app asks you to download the newest version from the <a href="%s">downloads page</a> and replace the old one.</div>' % DL
 b += cta()
 page("versions.html", "Versions", "Every Photo Clinic release, newest first, with what is new in each.", b, "versions.html")
