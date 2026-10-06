@@ -80,6 +80,7 @@ def page(fname, title, desc, body, cur=None):
 <title>%s</title>
 <meta name="description" content="%s">
 <link rel="stylesheet" href="style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4156851882993001" crossorigin="anonymous"></script>
 </head>
 <body>
 %s
@@ -87,7 +88,7 @@ def page(fname, title, desc, body, cur=None):
 %s
 <footer>
 <p>Photo Clinic is free to use, under the MIT licence. It is an independent project and is not affiliated with Google or Apple. Google, Google Photos, Apple, iCloud, iPhone and macOS are trademarks of their owners.</p>
-<p><a href="%s">Download</a> &middot; <a href="versions.html">Release notes</a> &middot; <a href="safety.html">Safety</a> &middot; <a href="versions.html">Versions</a></p>
+<p><a href="%s">Download</a> &middot; <a href="versions.html">Release notes</a> &middot; <a href="safety.html">Safety</a> &middot; <a href="versions.html">Versions</a> &middot; <a href="privacy.html">Privacy</a></p>
 </footer>
 </main>
 </body>
@@ -302,5 +303,20 @@ b += '<div class="callout"><b>Updating.</b> The app checks for updates and shows
 b += cta()
 page("versions.html", "Versions", "Every Photo Clinic release, newest first, with what is new in each.", b, "versions.html")
 
+# ---------------------------------------------------------------- privacy
+b = head("Privacy", "What this website and the app do with your data", "The short version: the app collects nothing. The website uses Google AdSense, which uses cookies.")
+b += """<h2>The Photo Clinic app</h2>
+%s
+<h2>This website</h2>
+%s
+<h2>Questions</h2>
+<p>Email <a href="mailto:thestocksoup@gmail.com">thestocksoup@gmail.com</a>.</p>
+%s""" % (
+ ticks(["Your photos, file names and Photos library <b>never leave your Mac</b>. There is no account and no analytics inside the app.", "The only network use is checking GitHub for a newer version and, if you choose to update, downloading it. GitHub can see your IP address when that happens, like any website.", "Reports and history stay on your Mac, in your own folders."]),
+ ticks(["The site is hosted on GitHub Pages. GitHub may log visitors' IP addresses as part of running the service.", "This site uses <b>Google AdSense</b>. Google and its partners may use cookies and similar technology to show and measure ads, including personalised ads where the law allows. You can manage this at <a href=\"https://adssettings.google.com\">adssettings.google.com</a> and read how Google uses data at <a href=\"https://policies.google.com/technologies/partner-sites\">policies.google.com/technologies/partner-sites</a>.", "We do not run our own analytics or sell any data, and the site has no accounts or forms.", "Downloads are served by GitHub, which counts how many times each file is downloaded."]),
+ cta())
+page("privacy.html", "Privacy", "What the Photo Clinic website and app do with your data.", b, "privacy.html")
+
+(OUT / "ads.txt").write_text("google.com, pub-4156851882993001, DIRECT, f08c47fec0942fa0\n", encoding="utf-8")
 (OUT / "style.css").write_text(CSS, encoding="utf-8")
 print("built")
