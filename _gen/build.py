@@ -86,7 +86,7 @@ def page(fname, title, desc, body, cur=None):
 <main>
 %s
 <footer>
-<p>Photo Clinic is free and open source (MIT licence). It is an independent project and is not affiliated with Google or Apple. Google, Google Photos, Apple, iCloud, iPhone and macOS are trademarks of their owners.</p>
+<p>Photo Clinic is free to use, under the MIT licence. It is an independent project and is not affiliated with Google or Apple. Google, Google Photos, Apple, iCloud, iPhone and macOS are trademarks of their owners.</p>
 <p><a href="%s">Download</a> &middot; <a href="https://github.com/daviddef/photoclinic-releases">Release notes</a> &middot; <a href="safety.html">Safety</a> &middot; <a href="versions.html">Versions</a></p>
 </footer>
 </main>
@@ -259,11 +259,11 @@ b += """<h2>Safe</h2>
 <h2 id="app-store">Why is it not in the Mac App Store?</h2>
 <p class="sub">Because the App Store would make it do less. Apps there must run inside Apple's <b>sandbox</b>, which walls an app off from the rest of your Mac. Photo Clinic's whole job is to reach across that wall:</p>
 %s
-<p>That is why Photo Clinic is downloaded from here instead. It is still <b>signed with a registered Apple developer ID and checked (notarised) by Apple</b>, so macOS opens it without scary warnings. Being outside the App Store also keeps it free, open source and simple to update.</p>
+<p>That is why Photo Clinic is downloaded from here instead. It is still <b>signed with a registered Apple developer ID and checked (notarised) by Apple</b>, so macOS opens it without scary warnings. Being outside the App Store also keeps it free and simple to update.</p>
 <div class="callout"><b>Could that change?</b> A cut-down App Store version, with fewer checks and no Photos monitoring, is possible if enough people ask. For now we would rather do the whole job well.</div>
 <h2>Questions</h2>
 <details><summary>Why is it not in the Mac App Store?</summary><p>The App Store requires apps to run in a sandbox, and Photo Clinic needs to read your Photos library, any folder you pick and the system log. <a href="#app-store">Read the full answer</a>.</p></details>
-<details><summary>Is it really free?</summary><p>Yes. It is free and open source under the MIT licence. There is no account and no subscription.</p></details>
+<details><summary>Is it really free?</summary><p>Yes. It is free to use, under the MIT licence. There is no account and no subscription.</p></details>
 <details><summary>Which Macs does it run on?</summary><p>Apple silicon Macs today. It needs no extra software. An Intel version is not available yet.</p></details>
 <details><summary>Does it work on Windows or iPhone?</summary><p>Not yet. Photo Clinic is a Mac app, and the Apple Photos checks only make sense on a Mac.</p></details>
 <details><summary>Will it change my Google Takeout files?</summary><p>No. By default it copies your photos to a new folder and fixes the copies.</p></details>
