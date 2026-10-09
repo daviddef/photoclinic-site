@@ -273,7 +273,7 @@ b += """<h2>Safe</h2>
 <details><summary>What if Google changes Takeout?</summary><p>It may need an update. Photo Clinic checks for updates and tells you when one is ready.</p></details>
 %s%s""" % (
  ticks(["<b>Preview first, always.</b> Every run starts as a preview showing exactly what would change.", "<b>Copy by default.</b> Your originals stay where they are unless you choose otherwise.", "<b>Stop and undo.</b> Stop any job, and put everything back from a copy or move run with one click.", "<b>Reports and logs</b> of every run, and a one-tap diagnostic summary if you need help.", "<b>Faulty drives handled.</b> Copying waits, retries and carries on where it stopped."]),
- ticks(["It runs on your Mac. <b>No account, nothing uploaded, nothing phones home.</b>", "The app can only be reached from your own computer.", "Checks read a <b>copy</b> of Photos' database, never the original. Sending photos to Photos goes through Photos' own import."]),
+ ticks(["It runs on your Mac. <b>No account, and your photos are never uploaded.</b> Nothing else leaves your Mac unless you switch on the optional sharing of unrecognised log lines (see Privacy).", "The app can only be reached from your own computer.", "Checks read a <b>copy</b> of Photos' database, never the original. Sending photos to Photos goes through Photos' own import."]),
  ticks(["<b>Full Disk Access</b> to read the Photos database for the checks and the monitor.", "<b>Photos control</b> if you use the send-to-Photos step.", "macOS asks the first time, and the app explains what to do if it is missing."]),
  ticks(["It reads the <b>Photos library and its database</b>, which belong to another app, to count uploads and check sync.", "It reads <b>any folder you choose</b>, including whole drives and Takeout zips.", "It reads the <b>system log</b> to explain Photos and iCloud problems.", "It <b>controls Photos</b> to import in batches.", "It runs helper programs (ExifTool and ffmpeg) to read and write photo details and convert video."]),
  cta(), nextlinks(("apple-photos.html", "Move to Apple Photos"), None))
@@ -287,10 +287,36 @@ def release(ver, date, tag, note, items, latest=False):
     return '<section class="rel" id="v%s"><div class="relhead"><h2>%s%s</h2><span class="reldate">%s</span></div><p class="sub">%s</p>%s<p><a href="https://github.com/daviddef/photoclinic-releases/releases/download/%s/PhotoClinic-%s-arm64.dmg">Download %s</a></p></section>' % (ver, ver, badge, date, note, items, tag, ver, ver)
 
 b = head("Versions", "What is new in each version", "Every release, newest first. The app tells you when an update is ready, so you never have to check.")
+b += release("1.0.6", "9 October 2026", "v1.0.6", "Get photos out of an old library, find damaged files, and copy only the good ones.", ticks([
+  "<b>Old library extractor</b> (Tools, Utility). Turns an old Apple Photos, iPhoto or Aperture backup into a clean folder of copies, by album, year or year-month, with edited versions beside the originals and keywords, titles, ratings and places written into the copies. It skips exact and probable duplicates, shows a preview first, and has Undo.",
+  "<b>Find damaged files</b> lists photos and videos that are cut short, empty or will not open, and files that make a drive stop answering. It does not freeze when a drive stalls. Each row has copy-name, show and open-folder icons, and you can tag the damaged files in Finder.",
+  "<b>Copy the good files</b> copies the healthy photos and videos, with their .json files, to your Target and leaves the bad ones behind, with an optional move once each copy is verified. It is safe to run again after an interruption, and a stall lets you skip, try the next files or retry.",
+  "<b>Log messages explain more.</b> Ids in a log line get names where your Mac knows them (shared albums, photos) or a plain explanation where it does not, shown beside the untouched raw line with copy icons. Every finding has a line breakdown and a Plain or Technical wording switch.",
+  "<b>Catalogue: 283 entries.</b> 23 entries were researched again and 10 new ones added. Most are still marked low confidence and unverified, and each entry says what is inference.",
+  "<b>Calmer and tidier:</b> lines you have already sent are shown as sent, the Target shows on the Tools tab, sources are a tickable list, and the app repaints much less while it works. Live watch no longer hangs when a drive has stopped answering."]), latest=True)
+b += release("1.0.5", "8 October 2026", "v1.0.5", "Fixes the menu hidden behind the side pane, and faster optional sharing.", ticks([
+  "<b>The menu works again.</b> In 1.0.4 the three-line menu, the style box and some dialogs opened hidden behind the side pane. They now open on top of it.",
+  "<b>Optional sharing is quicker and easier to see.</b> Lines you have agreed to share go out within a few minutes, there is a Send what is waiting now button, and the report inbox says what each status means.",
+  "<b>More messages explained</b>, including iCloud push tokens, server lock and zone messages, the file-transfer engine, and connection set-up failures."]), latest=False)
+b += release("1.0.4", "8 October 2026", "v1.0.4", "A side pane that keeps watch, quick jobs, and many more messages explained.", ticks([
+  "<b>A side pane</b> with Activity, Live watch, Needs attention and the sync meter, each with a number on its tab. It collapses to a thin strip and you can drag it wider.",
+  "<b>Live watch groups repeats</b> into one card with a running total, flashes when something happens again, marks problems that fixed themselves with a green tick, and has a filter (the last five minutes by default). Every finding can show the log lines around it.",
+  "<b>Quick jobs</b> on the Fix screen and in Tools: fix metadata from Google's files only, dates only, places only, or fix in place. They tick only what that job needs.",
+  "<b>Compare libraries</b> now reads old iPhoto and Aperture libraries, opens with a plain verdict, and can copy what only one library has into year and album folders without changing either.",
+  "<b>Check my photos</b> also measures disk space and the sync meter, finds broken thumbnails, and fills a status row on Home.",
+  "<b>Many more messages explained</b>, each saying how we know. New: Save for review, and an optional, off-by-default way to share log lines Photo Clinic could not explain (cleaned first, Apple lines only, never linked to you).",
+  "<b>Clearer and calmer:</b> stray and missing files ignore what is already in Recently Deleted, the disk space tool shows the whole library's real size, no folder is chosen for you unless you ask, and the target drive's free space is shown."]), latest=False)
+b += release("1.0.3", "7 October 2026", "v1.0.3", "One check for everything, one screen to fix, and findings sorted by how much they matter.", ticks([
+  "<b>Check my photos:</b> one button runs a read-only check of your photos, the Photos library, iCloud uploads, the logs and folder health, with a checklist, saved results and a status strip on Home.",
+  "<b>Fix my photos:</b> one screen for dates, places, captions, albums and Live Photos. Copy, move or fix in place.",
+  "<b>Findings sorted by importance:</b> Must resolve, Should review and Pure FYI. A passing network blip no longer looks like a problem, and many more log messages are explained in plain words.",
+  "<b>Compare libraries</b> (under Tools): compares two folders, Photos libraries, or old iPhoto and Aperture libraries, and can copy what only one has into year and album folders. Neither library is changed.",
+  "<b>Library health score,</b> a chart of library size and iCloud originals, a sortable process table, a Help me button and a Tools launcher.",
+  "<b>The app can update itself</b> from the next release."]), latest=False)
 b += release("1.0.2", "6 October 2026", "v1.0.2", "Quieter, clearer log reading.", ticks([
   "<b>Harmless messages are left out.</b> Photos, iCloud and macOS print many error-looking lines on a healthy Mac. The common harmless ones are now recognised and hidden, and the results say how many were left out.",
   "<b>Four more real problems explained:</b> iCloud slowing the upload of photo-analysis data, a missing preview picture, an unreadable account list, and a dropped network connection.",
-  "<b>The Photos Health monitor</b> ignores the same harmless noise."]), latest=True)
+  "<b>The Photos Health monitor</b> ignores the same harmless noise."]), latest=False)
 b += release("1.0.1", "6 October 2026", "v1.0.1", "The first release: signed and notarised for Apple silicon Macs.", ticks([
   "<b>Fix a Google Takeout:</b> dates, places, captions, people and favourites restored from Google's files, read straight from zips, with time zones, Live Photos, edited copies, albums and Motion Photos handled.",
   "<b>Dates and places from every clue:</b> file names, folders, neighbouring photos and GPX tracks, plus offline place names for about 144,000 towns and cities.",
@@ -304,7 +330,7 @@ b += cta()
 page("versions.html", "Versions", "Every Photo Clinic release, newest first, with what is new in each.", b, "versions.html")
 
 # ---------------------------------------------------------------- privacy
-b = head("Privacy", "What this website and the app do with your data", "The short version: the app collects nothing. The website uses Google AdSense, which uses cookies.")
+b = head("Privacy", "What this website and the app do with your data", "The short version: the app collects nothing unless you switch on optional log sharing. The website uses Google AdSense, which uses cookies.")
 b += """<h2>The Photo Clinic app</h2>
 %s
 <h2>This website</h2>
@@ -312,7 +338,7 @@ b += """<h2>The Photo Clinic app</h2>
 <h2>Questions</h2>
 <p>Email <a href="mailto:thestocksoup@gmail.com">thestocksoup@gmail.com</a>.</p>
 %s""" % (
- ticks(["Your photos, file names and Photos library <b>never leave your Mac</b>. There is no account and no analytics inside the app.", "The only network use is checking GitHub for a newer version and, if you choose to update, downloading it. GitHub can see your IP address when that happens, like any website.", "Reports and history stay on your Mac, in your own folders."]),
+ ticks(["Your photos, file names and Photos library <b>never leave your Mac</b>. There is no account and no analytics inside the app.", "The only network use is checking GitHub for a newer version and, if you choose to update, downloading it. GitHub can see your IP address when that happens, like any website.", "Reports and history stay on your Mac, in your own folders.", "<b>Optional sharing, off by default.</b> If you choose to help improve the explanations, Photo Clinic can send log lines it could not explain to a private review inbox (a Cloudflare Worker with a database). Only Apple's own system lines are eligible, and names, folders, file names, photo ids, email and network addresses, serial numbers and long numbers are removed first; a line that still looks personal is not sent. Your macOS and Photo Clinic versions go with it. There is no account and no id, so reports cannot be linked to you (which also means one cannot be found and deleted later). They are kept for 180 days. You see everything that was sent, inside the app, and can switch it off at any time. Cloudflare can see the IP address of the connection, like any website, and Photo Clinic does not store it."]),
  ticks(["The site is hosted on GitHub Pages. GitHub may log visitors' IP addresses as part of running the service.", "This site uses <b>Google AdSense</b>. Google and its partners may use cookies and similar technology to show and measure ads, including personalised ads where the law allows. You can manage this at <a href=\"https://adssettings.google.com\">adssettings.google.com</a> and read how Google uses data at <a href=\"https://policies.google.com/technologies/partner-sites\">policies.google.com/technologies/partner-sites</a>.", "We do not run our own analytics or sell any data, and the site has no accounts or forms.", "Downloads are served by GitHub, which counts how many times each file is downloaded."]),
  cta())
 page("privacy.html", "Privacy", "What the Photo Clinic website and app do with your data.", b, "privacy.html")
