@@ -62,7 +62,7 @@ details p{margin:8px 0 0;color:var(--mute)}
 .cta h2{margin-top:0}
 .next{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:40px;font-weight:700}
 .next a{text-decoration:none}
-footer{margin-top:48px;color:var(--mute);font-size:14px;text-align:center}
+footer{margin-top:48px;color:var(--mute);font-size:14px;text-align:center}.gcstats{font-size:13px;opacity:.85}
 @media (max-width:760px){.hero,.phead{grid-template-columns:1fr}.hero figure,.phead figure{max-width:340px;margin:0 auto}}
 """
 
@@ -81,6 +81,8 @@ def page(fname, title, desc, body, cur=None):
 <meta name="description" content="%s">
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4156851882993001" crossorigin="anonymous"></script>
+<script data-goatcounter="https://daviddef.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 %s
@@ -89,6 +91,12 @@ def page(fname, title, desc, body, cur=None):
 <footer>
 <p>Photo Clinic is free to use, under the MIT licence. It is an independent project and is not affiliated with Google or Apple. Google, Google Photos, Apple, iCloud, iPhone and macOS are trademarks of their owners.</p>
 <p><a href="%s">Download</a> &middot; <a href="versions.html">Release notes</a> &middot; <a href="safety.html">Safety</a> &middot; <a href="versions.html">Versions</a> &middot; <a href="privacy.html">Privacy</a></p>
+<p class="gcstats" id="gcstats" hidden></p>
+<script>
+(function(){try{var r=new XMLHttpRequest();r.addEventListener("load",function(){try{var j=JSON.parse(this.responseText),e=document.getElementById("gcstats");
+if(e&&j&&j.count!==undefined){e.textContent="Visitors: "+j.count_unique+" \u00b7 Page views: "+j.count+" (counted by GoatCounter)";e.hidden=false}}catch(x){}});
+r.open("GET","https://daviddef.goatcounter.com/counter/TOTAL.json");r.send()}catch(x){}})();
+</script>
 </footer>
 </main>
 </body>
@@ -330,7 +338,7 @@ b += cta()
 page("versions.html", "Versions", "Every Photo Clinic release, newest first, with what is new in each.", b, "versions.html")
 
 # ---------------------------------------------------------------- privacy
-b = head("Privacy", "What this website and the app do with your data", "The short version: the app collects nothing unless you switch on optional log sharing. The website uses Google AdSense, which uses cookies.")
+b = head("Privacy", "What this website and the app do with your data", "The short version: the app collects nothing unless you switch on optional log sharing. The website uses Google AdSense, which uses cookies, and a privacy-focused visitor counter (GoatCounter).")
 b += """<h2>The Photo Clinic app</h2>
 %s
 <h2>This website</h2>
@@ -339,7 +347,7 @@ b += """<h2>The Photo Clinic app</h2>
 <p>Email <a href="mailto:thestocksoup@gmail.com">thestocksoup@gmail.com</a>.</p>
 %s""" % (
  ticks(["Your photos, file names and Photos library <b>never leave your Mac</b>. There is no account and no analytics inside the app.", "The only network use is checking GitHub for a newer version and, if you choose to update, downloading it. GitHub can see your IP address when that happens, like any website.", "Reports and history stay on your Mac, in your own folders.", "<b>Optional sharing, off by default.</b> If you choose to help improve the explanations, Photo Clinic can send log lines it could not explain to a private review inbox (a Cloudflare Worker with a database). Only Apple's own system lines are eligible, and names, folders, file names, photo ids, email and network addresses, serial numbers and long numbers are removed first; a line that still looks personal is not sent. Your macOS and Photo Clinic versions go with it. There is no account and no id, so reports cannot be linked to you (which also means one cannot be found and deleted later). They are kept for 180 days. You see everything that was sent, inside the app, and can switch it off at any time. Cloudflare can see the IP address of the connection, like any website, and Photo Clinic does not store it."]),
- ticks(["The site is hosted on GitHub Pages. GitHub may log visitors' IP addresses as part of running the service.", "This site uses <b>Google AdSense</b>. Google and its partners may use cookies and similar technology to show and measure ads, including personalised ads where the law allows. You can manage this at <a href=\"https://adssettings.google.com\">adssettings.google.com</a> and read how Google uses data at <a href=\"https://policies.google.com/technologies/partner-sites\">policies.google.com/technologies/partner-sites</a>.", "We do not run our own analytics or sell any data, and the site has no accounts or forms.", "Downloads are served by GitHub, which counts how many times each file is downloaded."]),
+ ticks(["The site is hosted on GitHub Pages. GitHub may log visitors' IP addresses as part of running the service.", "This site counts visits with <b>GoatCounter</b>, a privacy-focused service. It keeps only totals (for example how many people visited, which page, which site sent them, and their browser type, screen size and country), not your IP address or your browser's identifying text, and by its own description it cannot be used to identify a person. The totals are shown in the footer of every page.", "This site uses <b>Google AdSense</b>. Google and its partners may use cookies and similar technology to show and measure ads, including personalised ads where the law allows. You can manage this at <a href=\"https://adssettings.google.com\">adssettings.google.com</a> and read how Google uses data at <a href=\"https://policies.google.com/technologies/partner-sites\">policies.google.com/technologies/partner-sites</a>.", "We do not run our own analytics or sell any data, and the site has no accounts or forms.", "Downloads are served by GitHub, which counts how many times each file is downloaded."]),
  cta())
 page("privacy.html", "Privacy", "What the Photo Clinic website and app do with your data.", b, "privacy.html")
 

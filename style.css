@@ -57,5 +57,5 @@ details p{margin:8px 0 0;color:var(--mute)}
 .cta h2{margin-top:0}
 .next{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:40px;font-weight:700}
 .next a{text-decoration:none}
-footer{margin-top:48px;color:var(--mute);font-size:14px;text-align:center}
+footer{margin-top:48px;color:var(--mute);font-size:14px;text-align:center}.gcstats{font-size:13px;opacity:.85}
 @media (max-width:760px){.hero,.phead{grid-template-columns:1fr}.hero figure,.phead figure{max-width:340px;margin:0 auto}}
