@@ -1,0 +1,373 @@
+import html, pathlib
+OUT = pathlib.Path(__file__).resolve().parent.parent
+DL = "https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg"   # a fixed-name copy of the newest dmg: the click starts the download
+NAV = [("fix-takeout.html", "Clean up Takeout"), ("monitor.html", "Monitor"), ("problems.html", "Find problems"), ("tidy.html", "Combine &amp; tidy"), ("apple-photos.html", "Apple Photos"), ("safety.html", "Safety"), ("versions.html", "Versions")]
+
+CSS = """:root{--bg:#fbfaff;--card:#fff;--ink:#1b1830;--mute:#5f5b78;--line:#e3e0f2;--soft:#f1eefe;--acc:#5b3df5;--acc2:#e23fa0;--ok:#15803d}
+@media (prefers-color-scheme:dark){:root{--bg:#14121f;--card:#1e1b2e;--ink:#f3f1ff;--mute:#a9a5c4;--line:#322e4a;--soft:#25213a;--acc:#8b74ff;--acc2:#ff6fbd;--ok:#4ade80}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 -apple-system,system-ui,"Segoe UI",sans-serif}
+a{color:var(--acc)}
+main{max-width:920px;margin:0 auto;padding:0 20px 60px}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav div{max-width:920px;margin:0 auto;padding:10px 20px;display:flex;gap:6px 18px;flex-wrap:wrap;align-items:center;font-size:15px}
+nav b{margin-right:auto;font-size:17px}
+nav a{text-decoration:none;color:var(--ink);font-weight:600}
+nav a:hover,nav a[aria-current]{color:var(--acc)}
+h1{font-size:clamp(32px,6vw,48px);line-height:1.12;margin:0 0 14px}
+h1 span{background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:26px;line-height:1.2;margin:48px 0 6px}
+h3{font-size:18px;margin:0 0 4px}
+.lead{font-size:20px;color:var(--mute);margin:0 0 24px}
+.sub{color:var(--mute);margin:0 0 16px}
+.crumb{font-size:14px;margin:28px 0 0}
+.kicker{color:var(--acc);font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 6px}
+.btn{display:inline-block;padding:14px 28px;border-radius:999px;background:linear-gradient(90deg,var(--acc),var(--acc2));color:#fff;font-weight:800;font-size:18px;text-decoration:none}
+.btn:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.note{color:var(--mute);font-size:14px;margin-top:12px}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;padding:48px 0 16px}
+.phead{padding:12px 0 8px;display:grid;grid-template-columns:1.3fr .7fr;gap:32px;align-items:center}
+.shot{width:100%;height:auto;display:block;border-radius:18px;border:1px solid var(--line);box-shadow:0 10px 30px rgba(60,40,140,.18)}
+figure{margin:0}
+figcaption{color:var(--mute);font-size:13.5px;margin-top:8px;text-align:center}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;margin-top:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+.card p{margin:0;color:var(--mute);font-size:15.5px}
+.card a.more{margin-top:auto;padding-top:8px;font-weight:700;text-decoration:none}
+.card i{font-style:normal;font-size:28px;line-height:1}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:16px}
+.pair .card{border-radius:16px}
+ul.ticks{list-style:none;padding:0;margin:8px 0 0}
+ul.ticks li{padding:8px 0 8px 28px;position:relative;border-bottom:1px solid var(--line)}
+ul.ticks li:last-child{border:0}
+ul.ticks li::before{content:"\\2713";position:absolute;left:4px;color:var(--ok);font-weight:900}
+ul.ticks b{font-weight:700}
+ul.bad li::before{content:"\\2715";color:var(--acc2)}
+.steps{display:grid;gap:12px;padding:0;list-style:none;counter-reset:s;margin:16px 0 0}
+.steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px 14px 62px;position:relative}
+.steps li::before{content:counter(s);position:absolute;left:18px;top:12px;width:32px;height:32px;border-radius:50%;background:var(--acc);color:#fff;font-weight:800;display:grid;place-items:center}
+.states{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:14px 0}
+.states div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:15px}
+.states b{display:block}
+.callout{background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-top:20px;font-size:15.5px}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:10px 0}
+summary{cursor:pointer;font-weight:700}
+details p{margin:8px 0 0;color:var(--mute)}
+.badge{display:inline-block;vertical-align:middle;font-size:12px;font-weight:800;padding:2px 10px;border-radius:999px;background:var(--acc);color:#fff;margin-left:8px;letter-spacing:.04em}
+.relhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.reldate{color:var(--mute);font-size:14px}
+.rel{border-top:1px solid var(--line);margin-top:32px;padding-top:4px}
+.cta{text-align:center;margin-top:56px;padding:32px 20px;background:var(--soft);border:1px solid var(--line);border-radius:22px}
+.cta h2{margin-top:0}
+.next{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:40px;font-weight:700}
+.next a{text-decoration:none}
+footer{margin-top:48px;color:var(--mute);font-size:14px;text-align:center}.gcstats{font-size:13px;opacity:.85}
+@media (max-width:760px){.hero,.phead{grid-template-columns:1fr}.hero figure,.phead figure{max-width:340px;margin:0 auto}}
+"""
+
+def nav(cur):
+    items = "".join('<a href="%s"%s>%s</a>' % (h, ' aria-current="page"' if h == cur else "", t) for h, t in NAV)
+    return '<nav><div><b><a href="index.html" style="text-decoration:none;color:inherit">Photo Clinic</a></b>%s</div></nav>' % items
+
+def page(fname, title, desc, body, cur=None):
+    t = "Photo Clinic" if fname == "index.html" else "%s - Photo Clinic" % title
+    doc = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>%s</title>
+<meta name="description" content="%s">
+<link rel="stylesheet" href="style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4156851882993001" crossorigin="anonymous"></script>
+<script data-goatcounter="https://photoclinic.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+%s
+<main>
+%s
+<footer>
+<p>Photo Clinic is free to use, under the MIT licence. It is an independent project and is not affiliated with Google or Apple. Google, Google Photos, Apple, iCloud, iPhone and macOS are trademarks of their owners.</p>
+<p><a href="%s">Download</a> &middot; <a href="versions.html">Release notes</a> &middot; <a href="safety.html">Safety</a> &middot; <a href="versions.html">Versions</a> &middot; <a href="privacy.html">Privacy</a></p>
+<p class="gcstats" id="gcstats" hidden></p>
+<script>
+(function(){try{var r=new XMLHttpRequest();r.addEventListener("load",function(){try{var j=JSON.parse(this.responseText),e=document.getElementById("gcstats");
+if(e&&j&&j.count!==undefined){e.textContent="Visitors: "+j.count_unique+" \u00b7 Page views: "+j.count+" (counted by GoatCounter)";e.hidden=false}}catch(x){}});
+r.open("GET","https://photoclinic.goatcounter.com/counter/TOTAL.json");r.send()}catch(x){}})();
+</script>
+</footer>
+</main>
+</body>
+</html>
+""" % (html.escape(t), html.escape(desc), nav(cur), body, DL)
+    (OUT / fname).write_text(doc, encoding="utf-8")
+
+def head(kicker, h1, lead, img=None, alt="", cap=""):
+    fig = '<figure><img class="shot" src="img/%s" width="620" height="940" alt="%s"><figcaption>%s</figcaption></figure>' % (img, alt, cap) if img else ""
+    return '<p class="crumb"><a href="index.html">&larr; Photo Clinic</a></p><div class="phead"><div><p class="kicker">%s</p><h1>%s</h1><p class="lead">%s</p><a class="btn" href="%s">Download for Mac</a></div>%s</div>' % (kicker, h1, lead, DL, fig)
+
+def ticks(items, cls=""):
+    return '<ul class="ticks %s">%s</ul>' % (cls, "".join("<li>%s</li>" % i for i in items))
+
+def cards(items, cls="pair"):
+    return '<div class="%s">%s</div>' % (cls, "".join('<div class="card"><h3>%s</h3><p>%s</p></div>' % (a, b) for a, b in items))
+
+def nextlinks(prev, nxt):
+    p = '<a href="%s">&larr; %s</a>' % prev if prev else "<span></span>"
+    n = '<a href="%s">%s &rarr;</a>' % nxt if nxt else "<span></span>"
+    return '<div class="next">%s%s</div>' % (p, n)
+
+def cta():
+    return '<div class="cta"><h2>Look at your library for free</h2><p class="sub">Download it, point it at your photos, and read the preview. That costs nothing and changes nothing.</p><a class="btn" href="%s">Download for Mac</a><p class="note">Free &middot; Apple silicon Macs &middot; signed and checked by Apple</p></div>' % DL
+
+# ---------------------------------------------------------------- home
+home = """<section class="hero">
+<div>
+<h1>Get your photos <span>out of the shoebox</span></h1>
+<p class="lead">Photo Clinic cleans up your Google Photos download, watches over Apple Photos and iCloud, and tells you in plain words what is wrong and what to do about it.</p>
+<a class="btn" href="%s">Download for Mac</a>
+<p class="note">Free &middot; 66&nbsp;MB &middot; Apple silicon Macs &middot; signed and checked by Apple &middot; nothing is uploaded</p>
+</div>
+<figure><img class="shot" src="img/home.jpg" width="620" height="940" alt="The Photo Clinic home screen"><figcaption>The home screen</figcaption></figure>
+</section>
+
+<h2>What Photo Clinic does</h2>
+<p class="sub">Five jobs, in the order most people need them, and a promise. Choose one to see exactly what it does.</p>
+<div class="cards">
+<div class="card"><i>&#129529;</i><h3>Clean up your Google Takeout</h3><p>Puts back the dates, places and captions Google strips out, and sorts out the duplicates and clutter.</p><a class="more" href="fix-takeout.html">See how &rarr;</a></div>
+<div class="card"><i>&#128200;</i><h3>Monitor your Photos library</h3><p>A reading every 15 minutes shows whether Photos and iCloud are syncing, stalled or erroring.</p><a class="more" href="monitor.html">See how &rarr;</a></div>
+<div class="card"><i>&#129658;</i><h3>Find what is not right</h3><p>Reads the hidden Photos and iCloud messages, explains the problem and gives you fixes to try.</p><a class="more" href="problems.html">See how &rarr;</a></div>
+<div class="card"><i>&#129513;</i><h3>Combine and tidy</h3><p>Merge libraries, remove copies, review look-alikes and convert old videos, with a health score.</p><a class="more" href="tidy.html">See how &rarr;</a></div>
+<div class="card"><i>&#127822;</i><h3>Move to Apple Photos</h3><p>Sends your library in careful batches, oldest first, and waits for iCloud to keep up.</p><a class="more" href="apple-photos.html">See how &rarr;</a></div>
+<div class="card"><i>&#128737;&#65039;</i><h3>Safe and private</h3><p>Preview first, copies not originals, undo, and nothing ever leaves your Mac.</p><a class="more" href="safety.html">See how &rarr;</a></div>
+</div>
+
+<h2>How it works</h2>
+<ol class="steps">
+<li><b>Choose your photos.</b> Drop in your Google Takeout zip files or a folder.</li>
+<li><b>Look at the preview.</b> It shows what would change. Nothing is touched yet.</li>
+<li><b>Press go.</b> Your photos come out fixed, in a new folder, ready for Apple Photos.</li>
+</ol>
+%s""" % (DL, cta())
+page("index.html", "Photo Clinic", "Fix your Google Photos download, check Apple Photos and iCloud, and watch your library's health. Free, private, runs on your Mac.", home)
+
+# ---------------------------------------------------------------- fix takeout
+b = head("Clean up your Google Takeout", "Give every photo its story back", "Google keeps the dates, places and captions in separate files and leaves the photos themselves bare. Photo Clinic reads those files and writes everything back.", "easy-fix.jpg", "The Easy fix screen with the five styles", "Easy fix: choose a style, then look at your files")
+b += """<h2>What goes wrong in a Takeout</h2>
+%s
+<h2>What Photo Clinic puts right</h2>
+%s
+<h2>Dates and places, even when Google has none</h2>
+%s
+<h2>Choose how careful to be</h2>
+<p class="sub">Five styles set every option for you. <b>Balanced</b> is the recommended mix.</p>
+<div class="phead" style="padding-top:0"><div>%s</div><figure><img class="shot" src="img/styles.jpg" width="620" height="940" loading="lazy" alt="A table comparing what the five styles turn on and off"><figcaption>All five styles side by side</figcaption></figure></div>
+<h2>See it before it happens</h2>
+%s
+<div class="callout"><b>Good to know.</b> Some old video formats (AVI, MKV, WMV, MPG, MTS) and BMP files cannot hold this kind of information, so those only get their file date fixed.</div>
+%s%s""" % (
+ ticks(["Every photo shows the day you <b>downloaded</b> it, not the day you took it.", "Locations and captions are missing from the pictures.", "Live Photos arrive split into a picture and a separate video.", "Google's <code>-edited</code> copies sit next to the originals.", "Albums become folders full of duplicate copies.", "Hundreds of <code>.json</code> files clutter the folders, and names get cut off or numbered <code>(1)</code>."], "bad"),
+ cards([("Dates, places, captions", "Restored from Google's own files: dates, locations, captions, people and favourites, across many zips and batches."), ("Time zones done properly", "Google stores times in UTC. Photo Clinic writes local time with the right offset, using the photo's location or this Mac's time zone."), ("Live Photos back together", "The picture and its video are paired again so Apple Photos treats them as one."), ("Edited copies matched", "Choose to keep both, keep the edit or keep the original."), ("Albums kept", "One copy of each photo is kept, and the albums are written out as keywords and a list so nothing is lost."), ("Motion Photos", "The video hidden inside a Google Motion Photo is pulled out and saved as a normal MP4.")]),
+ ticks(["<b>Missing dates rebuilt</b> from the file name (<code>IMG_20190704_&hellip;</code>, <code>PXL_&hellip;</code>, screenshots), neighbouring photo numbers, the folder name and the file's own time. Each guess has a confidence you can review.", "<b>Places filled in</b> from nearby photos or a GPX track, or guessed from a folder name like <code>Johannesburg</code>. Guesses are labelled as guesses and never replace a real location.", "<b>Place names written in</b> (city, region, country) from an offline list of about 144,000 towns and cities. No internet needed.", "<b>Wrong dates flagged</b>, such as future dates or a year that disagrees with the folder."]),
+ ticks(["Every style starts as a <b>preview</b>. Nothing changes until you untick it and press start.", "Compare all five in one table, and save your own settings as a favourite with the star."]),
+ ticks(["A <b>pre-flight check</b> tells you what is in your Takeout before anything runs.", "A <b>before-and-after storyboard</b> shows a few of your real photos with what changes in the date, place and caption.", "Your originals are <b>copied, not touched</b>."]),
+ cta(), nextlinks(None, ("monitor.html", "Monitor your Photos library")))
+page("fix-takeout.html", "Clean up your Google Takeout", "How Photo Clinic restores dates, places, captions, Live Photos and albums in a Google Takeout.", b, "fix-takeout.html")
+
+# ---------------------------------------------------------------- monitor
+b = head("Monitor your Photos library", "A reading every 15 minutes", "Big iCloud libraries can take days or weeks to sync, and from the outside it is hard to tell working from stuck. Photo Clinic records how your library is doing and shows the trend, so you do not have to guess.", "photos-health.jpg", "The Photos Health tab showing a verdict, library counts and a trend chart", "Photos Health (sample data)")
+b += """<h2>A plain verdict</h2>
+<p class="sub">One word and one sentence on what to do. It only reads; it never writes to your library.</p>
+<div class="states">
+<div><b>Healthy</b>Nothing is wrong and nothing is happening.</div>
+<div><b>Downloading</b>Catching up with iCloud. Normal.</div>
+<div><b>Merging</b>Albums and edits being merged. Normal; Apple needs days.</div>
+<div><b>Waiting on sync</b>Photo analysis is waiting for iCloud.</div>
+<div><b>Errors</b>iCloud is returning errors.</div>
+<div><b>Stuck</b>Only when every sign agrees (see below).</div>
+</div>
+<h2>What it records</h2>
+%s
+<h2>It never guesses</h2>
+%s
+<h2>When it runs</h2>
+%s
+<div class="callout"><b>One permission.</b> To read the Photos database, macOS needs you to give Photo Clinic <b>Full Disk Access</b> once. If it is missing, the Photos Health tab says so, names the program and opens the settings page for you.</div>
+%s%s""" % (
+ cards([("Your library", "Photos and videos (visible, hidden, deleted), albums and how many have been analysed."), ("iCloud's sync backlog", "The size of the queue iCloud works through. It should shrink over time."), ("Errors", "iCloud error counts, and how busy the sync process is."), ("Trends", "A chart for each number, the change over 24 hours, and a warning if the backlog has not moved for hours.")]),
+ ticks(["Anything it cannot measure is shown as <b>unknown</b>, not as good or bad.", "A steady heartbeat in the logs is <b>not</b> treated as progress or as a stall.", "<b>Stuck</b> needs all three: the merge has run for hours, the backlog has not moved, and the sync process is busy. Then it tells you to leave the library alone and keep the evidence."]),
+ ticks(["<b>While Photo Clinic is open</b>, it takes a reading every 15 minutes. You can leave it in the background.", "<b>A separate background job</b> is optional, so readings continue while the app is closed.", "A <b>full dashboard page</b> adds a gap check against iCloud.com, a by-year breakdown and your own to-do list."]),
+ cta(), nextlinks(("fix-takeout.html", "Clean up Takeout"), ("problems.html", "Find what is not right")))
+page("monitor.html", "Monitor your Photos library", "Photos Health records how your Apple Photos and iCloud library is doing every 15 minutes and tells you if it is syncing, stuck or erroring.", b, "monitor.html")
+
+# ---------------------------------------------------------------- problems
+b = head("Find what is not right", "Photos and iCloud fail quietly", "Photo Clinic reads what they will not tell you and explains it in plain words, with fixes to try. It only looks. It changes nothing.", "check-photos.jpg", "The Check Photos screen", "Check Photos: one tap checks everything")
+b += """<h2>One tap for the big picture</h2>
+<p class="sub"><b>Check everything for me</b> gives one verdict (healthy, needs attention or problem) from four checks:</p>
+%s
+<h2>Is it all in iCloud?</h2>
+%s
+<h2>Reads the messages you never see</h2>
+%s
+<h2>Fixes, in order</h2>
+%s
+<div class="callout"><b>Honest about its limits.</b> Apple does not document the Photos database and it changes between macOS versions, so upload counts are a strong hint, not a guarantee. The problem catalogue is a draft: fixes beyond the safe steps are leads to check, and every entry carries a confidence level. Give Apple's servers days, not minutes, before deciding something is permanently stuck.</div>
+%s%s""" % (
+ cards([("Your library files", "Empty, wrongly named and duplicate files, older formats and look-alike folders."), ("Photos upload progress", "Whether Photos is progressing or stuck, with time left."), ("Photos and iCloud logs", "Problems in the system logs, explained with fixes."), ("This Mac", "Free space, battery, power mode and heat.")]),
+ ticks(["<b>Is it all uploaded?</b> Counts what is in Photos and what has reached iCloud, works out your speed and time left, and says so if nothing has moved for about 45 minutes.", "<b>Which photos have not uploaded?</b> Lists each one with its size, date and the likely reason: an empty file, a wrong extension, an unusual type, a huge file or a missing original.", "<b>Did my albums and Live Photos arrive?</b> Compares what you sent with what Photos holds.", "<b>Sync queue and meter.</b> Shows how fast Photos talks to iCloud, and whether iCloud's own queue is shrinking or going round in circles.", "<b>Where is my disk space going?</b> For when Optimise Mac Storage is on but the library is not shrinking."]),
+ ticks(["<b>Log issues.</b> Recent Photos, iCloud and crash messages, grouped and explained: a full disk, a full iCloud plan, a dropped network, a sign-in problem, a damaged library, a repair in progress, files Photos refused to import and more.", "<b>Live watch.</b> Streams the messages as they happen, and shows the real file name, date and albums of the photo a message is about, not a long id.", "<b>Look up a photo</b> from an id in a log, or part of a file name.", "<b>Migration receipt.</b> A page you can share: what was done, how complete the metadata is, and what arrived in Photos and iCloud."]),
+ cards([("About 170 known problems", "A built-in catalogue with the error codes and messages each one shows, the likely causes, and fixes to try, safest first. Covers iCloud, library, import, disk and drives, permissions and media. It also knows a dozen harmless message families and hides them, so they do not bury the real problems."), ("17 fix guides", "Step-by-step checklists: iCloud stuck or paused, &ldquo;Unable to Upload&rdquo;, ghost files, a library that will not open, copy error -36, a slow or hot Mac, shared albums and more. Each step says who does it: Photo Clinic, you, or a Terminal command you can copy."), ("Set it up for me", "Where a problem has a matching tool, one button switches to it and sets the options. It always leaves Preview on, never presses Start, and has an undo.")]),
+ cta(), nextlinks(("monitor.html", "Monitor"), ("tidy.html", "Combine and tidy")))
+page("problems.html", "Find what is not right", "Photo Clinic reads the hidden Photos and iCloud messages, explains problems in plain words and gives fixes to try.", b, "problems.html")
+
+# ---------------------------------------------------------------- tidy
+b = head("Combine and tidy", "Get the whole library in order", "Merge folders, remove copies, review look-alikes and clean up. Nothing is deleted without a preview and a way back.")
+b += """<h2>Health score for your photos</h2>
+<p class="sub">A score out of 100 with a plain list of what is wrong, and a button to the tool that fixes it. It keeps a history so you can see whether your library is getting tidier.</p>
+%s
+<h2>Combine</h2>
+%s
+<h2>Clean up</h2>
+%s
+<div class="callout"><b>You stay in control.</b> Every one of these starts as a preview, copies by default, can be stopped, and can be undone from the Past runs tab.</div>
+%s%s""" % (
+ ticks(["Duplicate files, and the same file saved in several formats.", "Empty (0-byte) files, wrongly named files, temporary and leftover files.", "Look-alike folders, such as <code>Japan 2025</code> and <code>delete-Japan 2025</code>.", "Old video formats, and files only in iCloud Drive that are not on this disk.", "Photos with no date, and an estimate of the space you could win back."]),
+ cards([("Merge folders", "Combine libraries into one. Same-name folders are merged, and exact copies are dropped."), ("Review look-alikes", "The same photo at different sizes or re-saved. Shown side by side with a suggested keeper. Never deleted automatically."), ("Keeper rules", "Choose which copy to keep: favourite, edited, resolution, size, metadata, album. Bursts are kept by default."), ("Compare libraries", "See how alike two libraries are and which copy a merge would keep, before you merge.")]),
+ cards([("Convert old videos", "Turn old formats into MP4. Each conversion is verified before the original is replaced."), ("Junk and empty folders", "Clear leftover files and empty folders, and tidy odd names."), ("Blurry and screenshots", "Spot blurry pictures and screenshots so your keeper rules can prefer the sharp one."), ("Smart folder consolidation", "Fold look-alike folders together safely.")]),
+ cta(), nextlinks(("problems.html", "Find what is not right"), ("apple-photos.html", "Move to Apple Photos")))
+page("tidy.html", "Combine and tidy", "Merge libraries, remove duplicates, review look-alike photos, convert old videos and get a photo health score.", b, "tidy.html")
+
+# ---------------------------------------------------------------- apple photos
+b = head("Move to Apple Photos", "Send it slowly, safely", "Importing a huge library all at once can fill your Mac and confuse iCloud. Photo Clinic sends it in careful batches and waits for iCloud to keep up.")
+b += """<h2>How it sends</h2>
+%s
+<h2>Waiting for iCloud</h2>
+<p class="sub">Between batches it waits so Photos can upload. You choose how:</p>
+%s
+<h2>Before you start</h2>
+%s
+<div class="callout"><b>Photos has no undo for imports</b>, and Photo Clinic cannot take photos back out of Photos. That is why it starts with a preview and a small test. Keep your finished library and your Takeout until you have checked everything in Photos and iCloud.</div>
+%s%s""" % (
+ ticks(["<b>Batches of about 2 to 50&nbsp;GB</b>, oldest first, so your timeline fills in order.", "A Live Photo's picture and video always travel together.", "Folders that are albums become Photos albums.", "Photos skips what it already has, so running it again never duplicates.", "Files Photos cannot import (such as AVI, MKV, WMV) are listed and left out. Convert them first."]),
+ cards([("Until it reaches iCloud", "The default. Reads the Photos database to see each batch uploaded, and can make batches smaller or bigger depending on how iCloud keeps up."), ("Until there is room", "Waits until your Mac has the free space you choose."), ("Pause for me", "Stops between batches and waits for you to press Continue."), ("Do not wait", "Sends the next batch straight away.")]),
+ ticks(["In Photos, turn on <b>iCloud Photos</b> and choose <b>Optimize Mac Storage</b>.", "<b>Preview</b> first, then <b>send a small test of 20 photos</b> and look at it in Photos.", "Leave Photos open and the Mac awake.", "Short of space? Build the library on an <b>external drive</b>.", "The first time, macOS asks if Photo Clinic may control Photos. Allow it."]),
+ cta(), nextlinks(("tidy.html", "Combine and tidy"), ("safety.html", "Safe and private")))
+page("apple-photos.html", "Move to Apple Photos", "How Photo Clinic sends a large library to Apple Photos in careful batches and waits for iCloud.", b, "apple-photos.html")
+
+# ---------------------------------------------------------------- safety
+b = head("Safe and private", "Built so you can trust it with your only copy", "Your photos are the one thing you cannot get back, so everything here is built around not hurting them.")
+b += """<h2>Safe</h2>
+%s
+<h2>Private</h2>
+%s
+<h2>Permissions it asks for</h2>
+%s
+<div class="callout"><b>Please still back up your photos first.</b> Photo Clinic can move or delete files if you ask it to. It is provided as is, with no warranty. Keep your original Takeout until you have checked the result in Photos and iCloud.</div>
+<h2 id="app-store">Why is it not in the Mac App Store?</h2>
+<p class="sub">Because the App Store would make it do less. Apps there must run inside Apple's <b>sandbox</b>, which walls an app off from the rest of your Mac. Photo Clinic's whole job is to reach across that wall:</p>
+%s
+<p>That is why Photo Clinic is downloaded from here instead. It is still <b>signed with a registered Apple developer ID and checked (notarised) by Apple</b>, so macOS opens it without scary warnings. Being outside the App Store also keeps it free and simple to update.</p>
+<div class="callout"><b>Could that change?</b> A cut-down App Store version, with fewer checks and no Photos monitoring, is possible if enough people ask. For now we would rather do the whole job well.</div>
+<h2>Questions</h2>
+<details><summary>Why is it not in the Mac App Store?</summary><p>The App Store requires apps to run in a sandbox, and Photo Clinic needs to read your Photos library, any folder you pick and the system log. <a href="#app-store">Read the full answer</a>.</p></details>
+<details><summary>Is it really free?</summary><p>Yes. It is free to use, under the MIT licence. There is no account and no subscription.</p></details>
+<details><summary>Which Macs does it run on?</summary><p>Apple silicon Macs today. It needs no extra software. An Intel version is not available yet.</p></details>
+<details><summary>Does it work on Windows or iPhone?</summary><p>Not yet. Photo Clinic is a Mac app, and the Apple Photos checks only make sense on a Mac.</p></details>
+<details><summary>Will it change my Google Takeout files?</summary><p>No. By default it copies your photos to a new folder and fixes the copies.</p></details>
+<details><summary>Can it break my Apple Photos library?</summary><p>The checks only read a copy of the database. The one way it adds to Photos is the send step, which uses Photos' own import and starts with a preview and a 20-photo test.</p></details>
+<details><summary>Does it work with iCloud Photos switched on?</summary><p>Yes, that is what the Monitor and Find problems tools are for.</p></details>
+<details><summary>What if Google changes Takeout?</summary><p>It may need an update. Photo Clinic checks for updates and tells you when one is ready.</p></details>
+%s%s""" % (
+ ticks(["<b>Preview first, always.</b> Every run starts as a preview showing exactly what would change.", "<b>Copy by default.</b> Your originals stay where they are unless you choose otherwise.", "<b>Stop and undo.</b> Stop any job, and put everything back from a copy or move run with one click.", "<b>Reports and logs</b> of every run, and a one-tap diagnostic summary if you need help.", "<b>Faulty drives handled.</b> Copying waits, retries and carries on where it stopped."]),
+ ticks(["It runs on your Mac. <b>No account, and your photos are never uploaded.</b> Nothing else leaves your Mac unless you switch on the optional sharing of unrecognised log lines (see Privacy).", "The app can only be reached from your own computer.", "Checks read a <b>copy</b> of Photos' database, never the original. Sending photos to Photos goes through Photos' own import."]),
+ ticks(["<b>Full Disk Access</b> to read the Photos database for the checks and the monitor.", "<b>Photos control</b> if you use the send-to-Photos step.", "macOS asks the first time, and the app explains what to do if it is missing."]),
+ ticks(["It reads the <b>Photos library and its database</b>, which belong to another app, to count uploads and check sync.", "It reads <b>any folder you choose</b>, including whole drives and Takeout zips.", "It reads the <b>system log</b> to explain Photos and iCloud problems.", "It <b>controls Photos</b> to import in batches.", "It runs helper programs (ExifTool and ffmpeg) to read and write photo details and convert video."]),
+ cta(), nextlinks(("apple-photos.html", "Move to Apple Photos"), None))
+page("safety.html", "Safe and private", "How Photo Clinic keeps your photos safe: preview first, copies by default, undo, and nothing leaves your Mac.", b, "safety.html")
+
+
+# ---------------------------------------------------------------- versions
+REL = "https://github.com/daviddef/photoclinic-releases/releases/tag/"
+def release(ver, date, tag, note, items, latest=False):
+    badge = ' <span class="badge">Latest</span>' if latest else ""
+    return '<section class="rel" id="v%s"><div class="relhead"><h2>%s%s</h2><span class="reldate">%s</span></div><p class="sub">%s</p>%s<p><a href="https://github.com/daviddef/photoclinic-releases/releases/download/%s/PhotoClinic-%s-arm64.dmg">Download %s</a></p></section>' % (ver, ver, badge, date, note, items, tag, ver, ver)
+
+b = head("Versions", "What is new in each version", "Every release, newest first. The app tells you when an update is ready, so you never have to check.")
+b += release("1.0.13", "9 October 2026", "v1.0.13", "One Add button for anything, Do it for real after a preview, and tidier folders and reports.", ticks([
+  "<b>One Add button</b> for folders, Takeout zips and Photos libraries: one system dialog, and Photo Clinic works out which each is. (Version 1.0.12 had this button but the dialog did not open; 1.0.13 fixes that.)",
+  "<b>Do it for real.</b> A finished preview now has a Do it for real button that repeats it with exactly the same settings, after a confirmation, so you do not need to untick Preview. In Start here there is also Skip to the next step.",
+  "<b>Ticks in the summary.</b> Each section gets a tick after a real run and a hollow circle after a preview.",
+  "<b>Tidy up</b> also puts folders with a single year in the name under that year (AUSTRALIA 2015 WITH FRIENDS goes in 2015). Names with two years, or only a year and month, stay where they are.",
+  "<b>Previews leave nothing in your Target.</b> Their CSV lists go to Documents/Photo Clinic/Spreadsheets, one folder per run.",
+  "<b>Live watch chart</b> counts messages when they happened, so a filter window shows only that window. A finished copy step no longer blocks the next step in Start here."]), latest=True)
+b += release("1.0.11", "9 October 2026", "v1.0.11", "A guided Start here, a Status tab, Keep sync running for when you are away, and tidier logs and reports.", ticks([
+  "<b>Start here.</b> Choose what you have (a Google Takeout, an old library, a folder, your Photos library or a drive that struggles) and Photo Clinic works out what it is, lists what it found grouped by the tool that deals with it, and makes a step-by-step plan. Each step says why, checks that the Target, free space and tools are ready, and works on the copy once an earlier step has made one. Progress is remembered, a green banner says when a step finished, and a Back button returns you to the plan.",
+  "<b>Status tab and a live status bar.</b> A Status tab in the side pane shows one bold number per check (for example Library 95/100), with grey rows you can check with one tap, and an Apple system status row. While anything runs, a bar along the bottom shows progress, counts, time left and Stop.",
+  "<b>Keep sync running</b> (Tools, Monitor) watches iCloud while you are away. It does not restart on a timer: it restarts the iCloud Photos sync or iCloud Drive only when the sync backlog is stuck or a service is pinned at high CPU, gently, at most once every two hours, never while iCloud is throttling, and it stops and tells you after three restarts that did not help. It can keep the Mac awake while plugged in, and has a Check before I leave list.",
+  "<b>Apple system status</b> asks Apple's public status page whether anything is not green, only when you press it. <b>Which file is iCloud Drive busy with?</b> lists files changing right now in iCloud Drive, Desktop and Documents.",
+  "<b>Log cards are tidier.</b> Each is one summary line with a coloured count, the process's CPU, a one-line description and a chevron to open the detail. Live watch has an issues-over-time chart, and the filter and add-unrecognised buttons sit beside Start. New one-tap restarts for the iCloud sync service and the Photos analysis service, and a reversible Reset iCloud's local cache. <b>Fixed:</b> Restart iCloud Drive was restarting the wrong service.",
+  "<b>Tidy up</b> can put date-named folders under their year (13 Sep 2014 goes in 2014), on by default. <b>Old library extractor</b> is one click from the look to the copy, and shows where it will copy.",
+  "<b>Reports and spreadsheets</b> now live in Documents/Photo Clinic (Runs, Previews, Spreadsheets, Receipts). Files earlier versions left on the Desktop and in Documents/Shoebox Reports are moved there once, and past runs still open.",
+  "<b>Sharing is more reliable.</b> Lines waiting to be shared are kept across restarts and the daily limit, the sender starts when the app opens, and the report inbox lists what is waiting, with Don't send and Send now.",
+  "Versions 1.0.7 to 1.0.10 were not released, so this includes everything since 1.0.6. The Target editor now matches the Source, a Home card is back among the tool cards beside a Last used group, and the window opens close to the height of the screen."]), latest=False)
+b += release("1.0.6", "9 October 2026", "v1.0.6", "Get photos out of an old library, find damaged files, and copy only the good ones.", ticks([
+  "<b>Old library extractor</b> (Tools, Utility). Turns an old Apple Photos, iPhoto or Aperture backup into a clean folder of copies, by album, year or year-month, with edited versions beside the originals and keywords, titles, ratings and places written into the copies. It skips exact and probable duplicates, shows a preview first, and has Undo.",
+  "<b>Find damaged files</b> lists photos and videos that are cut short, empty or will not open, and files that make a drive stop answering. It does not freeze when a drive stalls. Each row has copy-name, show and open-folder icons, and you can tag the damaged files in Finder.",
+  "<b>Copy the good files</b> copies the healthy photos and videos, with their .json files, to your Target and leaves the bad ones behind, with an optional move once each copy is verified. It is safe to run again after an interruption, and a stall lets you skip, try the next files or retry.",
+  "<b>Log messages explain more.</b> Ids in a log line get names where your Mac knows them (shared albums, photos) or a plain explanation where it does not, shown beside the untouched raw line with copy icons. Every finding has a line breakdown and a Plain or Technical wording switch.",
+  "<b>Catalogue: 283 entries.</b> 23 entries were researched again and 10 new ones added. Most are still marked low confidence and unverified, and each entry says what is inference.",
+  "<b>Calmer and tidier:</b> lines you have already sent are shown as sent, the Target shows on the Tools tab, sources are a tickable list, and the app repaints much less while it works. Live watch no longer hangs when a drive has stopped answering."]), latest=False)
+b += release("1.0.5", "8 October 2026", "v1.0.5", "Fixes the menu hidden behind the side pane, and faster optional sharing.", ticks([
+  "<b>The menu works again.</b> In 1.0.4 the three-line menu, the style box and some dialogs opened hidden behind the side pane. They now open on top of it.",
+  "<b>Optional sharing is quicker and easier to see.</b> Lines you have agreed to share go out within a few minutes, there is a Send what is waiting now button, and the report inbox says what each status means.",
+  "<b>More messages explained</b>, including iCloud push tokens, server lock and zone messages, the file-transfer engine, and connection set-up failures."]), latest=False)
+b += release("1.0.4", "8 October 2026", "v1.0.4", "A side pane that keeps watch, quick jobs, and many more messages explained.", ticks([
+  "<b>A side pane</b> with Activity, Live watch, Needs attention and the sync meter, each with a number on its tab. It collapses to a thin strip and you can drag it wider.",
+  "<b>Live watch groups repeats</b> into one card with a running total, flashes when something happens again, marks problems that fixed themselves with a green tick, and has a filter (the last five minutes by default). Every finding can show the log lines around it.",
+  "<b>Quick jobs</b> on the Fix screen and in Tools: fix metadata from Google's files only, dates only, places only, or fix in place. They tick only what that job needs.",
+  "<b>Compare libraries</b> now reads old iPhoto and Aperture libraries, opens with a plain verdict, and can copy what only one library has into year and album folders without changing either.",
+  "<b>Check my photos</b> also measures disk space and the sync meter, finds broken thumbnails, and fills a status row on Home.",
+  "<b>Many more messages explained</b>, each saying how we know. New: Save for review, and an optional, off-by-default way to share log lines Photo Clinic could not explain (cleaned first, Apple lines only, never linked to you).",
+  "<b>Clearer and calmer:</b> stray and missing files ignore what is already in Recently Deleted, the disk space tool shows the whole library's real size, no folder is chosen for you unless you ask, and the target drive's free space is shown."]), latest=False)
+b += release("1.0.3", "7 October 2026", "v1.0.3", "One check for everything, one screen to fix, and findings sorted by how much they matter.", ticks([
+  "<b>Check my photos:</b> one button runs a read-only check of your photos, the Photos library, iCloud uploads, the logs and folder health, with a checklist, saved results and a status strip on Home.",
+  "<b>Fix my photos:</b> one screen for dates, places, captions, albums and Live Photos. Copy, move or fix in place.",
+  "<b>Findings sorted by importance:</b> Must resolve, Should review and Pure FYI. A passing network blip no longer looks like a problem, and many more log messages are explained in plain words.",
+  "<b>Compare libraries</b> (under Tools): compares two folders, Photos libraries, or old iPhoto and Aperture libraries, and can copy what only one has into year and album folders. Neither library is changed.",
+  "<b>Library health score,</b> a chart of library size and iCloud originals, a sortable process table, a Help me button and a Tools launcher.",
+  "<b>The app can update itself</b> from the next release."]), latest=False)
+b += release("1.0.2", "6 October 2026", "v1.0.2", "Quieter, clearer log reading.", ticks([
+  "<b>Harmless messages are left out.</b> Photos, iCloud and macOS print many error-looking lines on a healthy Mac. The common harmless ones are now recognised and hidden, and the results say how many were left out.",
+  "<b>Four more real problems explained:</b> iCloud slowing the upload of photo-analysis data, a missing preview picture, an unreadable account list, and a dropped network connection.",
+  "<b>The Photos Health monitor</b> ignores the same harmless noise."]), latest=False)
+b += release("1.0.1", "6 October 2026", "v1.0.1", "The first release: signed and notarised for Apple silicon Macs.", ticks([
+  "<b>Fix a Google Takeout:</b> dates, places, captions, people and favourites restored from Google's files, read straight from zips, with time zones, Live Photos, edited copies, albums and Motion Photos handled.",
+  "<b>Dates and places from every clue:</b> file names, folders, neighbouring photos and GPX tracks, plus offline place names for about 144,000 towns and cities.",
+  "<b>Monitor your library:</b> a Photos Health tab takes a reading every 15 minutes while the app is open, with trends and a plain verdict. If macOS blocks it, it says which permission to give and opens the settings.",
+  "<b>Find what is not right:</b> upload progress, log reading, live watch, a sync meter, a disk-space check, about 170 known problems and 17 step-by-step fix guides.",
+  "<b>Combine and tidy:</b> merge folders, remove exact copies, review look-alikes, convert old videos to MP4 with verification, and a photo health score.",
+  "<b>Move to Apple Photos</b> in batches, oldest first, waiting for iCloud between batches.",
+  "<b>Five styles</b> from Safest to I like risk, preview first, copy by default, stop and undo, and reports for every run."]), latest=False)
+b += '<div class="callout"><b>Updating.</b> The app checks for updates and shows a banner when one is ready. The packaged Mac app asks you to download the newest version and replace the old one. <a href="%s">Download it here</a>.</div>' % DL
+b += cta()
+page("versions.html", "Versions", "Every Photo Clinic release, newest first, with what is new in each.", b, "versions.html")
+
+# ---------------------------------------------------------------- privacy
+b = head("Privacy", "What this website and the app do with your data", "The short version: the app collects nothing unless you switch on optional log sharing. The website uses Google AdSense, which uses cookies, and a privacy-focused visitor counter (GoatCounter).")
+b += """<h2>The Photo Clinic app</h2>
+%s
+<h2>This website</h2>
+%s
+<h2>Questions</h2>
+<p>Email <a href="mailto:thestocksoup@gmail.com">thestocksoup@gmail.com</a>.</p>
+%s""" % (
+ ticks(["Your photos, file names and Photos library <b>never leave your Mac</b>. There is no account and no analytics inside the app.", "The only network use is checking GitHub for a newer version and, if you choose to update, downloading it. GitHub can see your IP address when that happens, like any website.", "Reports and history stay on your Mac, in your own folders.", "<b>Optional sharing, off by default.</b> If you choose to help improve the explanations, Photo Clinic can send log lines it could not explain to a private review inbox (a Cloudflare Worker with a database). Only Apple's own system lines are eligible, and names, folders, file names, photo ids, email and network addresses, serial numbers and long numbers are removed first; a line that still looks personal is not sent. Your macOS and Photo Clinic versions go with it. There is no account and no id, so reports cannot be linked to you (which also means one cannot be found and deleted later). They are kept for 180 days. You see everything that was sent, inside the app, and can switch it off at any time. Cloudflare can see the IP address of the connection, like any website, and Photo Clinic does not store it."]),
+ ticks(["The site is hosted on GitHub Pages. GitHub may log visitors' IP addresses as part of running the service.", "This site counts visits with <b>GoatCounter</b>, a privacy-focused service. It keeps only totals (for example how many people visited, which page, which site sent them, and their browser type, screen size and country), not your IP address or your browser's identifying text, and by its own description it cannot be used to identify a person. The totals are shown in the footer of every page.", "This site uses <b>Google AdSense</b>. Google and its partners may use cookies and similar technology to show and measure ads, including personalised ads where the law allows. You can manage this at <a href=\"https://adssettings.google.com\">adssettings.google.com</a> and read how Google uses data at <a href=\"https://policies.google.com/technologies/partner-sites\">policies.google.com/technologies/partner-sites</a>.", "We do not run our own analytics or sell any data, and the site has no accounts or forms.", "Downloads are served by GitHub, which counts how many times each file is downloaded."]),
+ cta())
+page("privacy.html", "Privacy", "What the Photo Clinic website and app do with your data.", b, "privacy.html")
+
+(OUT / "ads.txt").write_text("google.com, pub-4156851882993001, DIRECT, f08c47fec0942fa0\n", encoding="utf-8")
+(OUT / "style.css").write_text(CSS, encoding="utf-8")
+print("built")
