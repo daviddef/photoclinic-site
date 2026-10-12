@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Our story - Photo Clinic</title>
+<meta name="description" content="Why we built Photo Clinic: what we learned moving a big photo library out of Google Photos and into Apple Photos.">
+<link rel="canonical" href="https://photoclinic.org/story.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Photo Clinic">
+<meta property="og:title" content="Our story - Photo Clinic">
+<meta property="og:description" content="Why we built Photo Clinic: what we learned moving a big photo library out of Google Photos and into Apple Photos.">
+<meta property="og:url" content="https://photoclinic.org/story.html">
+<meta property="og:image" content="https://photoclinic.org/img/home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4156851882993001" crossorigin="anonymous"></script>
+<script data-goatcounter="https://photoclinic.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<nav><div><b><a href="index.html" style="text-decoration:none;color:inherit">Photo Clinic</a></b><a href="story.html" aria-current="page">Our story</a><a href="tools.html">All tools</a><a href="fix-takeout.html">Google Takeout</a><a href="monitor.html">Monitor</a><a href="problems.html">Find problems</a><a href="tidy.html">Duplicates &amp; tidy</a><a href="old-libraries.html">Old libraries</a><a href="apple-photos.html">Apple Photos</a><a href="safety.html">Safety</a></div></nav>
+<main>
+<p class="crumb"><a href="index.html">&larr; Photo Clinic</a></p><div class="phead one"><div><p class="kicker">Our story</p><h1>Photos is hard. Leaving Google Photos is harder.</h1><p class="lead">We struggled with it, a lot. This page is what we learned the hard way, so you can skip the struggle.</p><a class="btn" href="https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg">Download for Mac</a></div></div><h2>1. The photos come out, but their story does not</h2>
+<p>When you take your photos out of Google, you get the pictures, and beside each one a small file with the date, the place and the caption. Google calls them JSON files. Most programs ignore them. So the photos arrive with no place, no caption, and often the wrong date: the day you downloaded them.</p>
+<p><b>What we do:</b> Photo Clinic reads those little files and writes the dates, places, captions, people and favourites back into the photos themselves, across as many zip files as Google gave you.</p>
+
+<h2>2. Dates are harder than they look</h2>
+<p>Google stores times in a universal clock (UTC). Your photo was taken in your local time, so a straight copy is wrong by hours, and sometimes lands on the wrong day. And some photos have no date at all.</p>
+<p><b>What we do:</b> We write local time with the right offset, using the photo's place or your Mac's time zone. For photos with no date we work it out from the file name, the photos next to it or the folder name. Every guess is labelled as a guess, with how sure we are, and a guess never replaces a real date.</p>
+
+<h2>3. One photo turns into many</h2>
+<p>Edited copies sit beside the originals. Albums become folders full of extra copies. Live Photos arrive as a picture plus a separate video. Motion Photos hide a video inside the picture. Hundreds of little files and numbered names get in the way.</p>
+<p><b>What we do:</b> We pair Live Photos back up, match edits to originals (you choose to keep both, the edit, or the original), keep one copy of each photo and write the album names out so nothing is lost, and pull the hidden video out of Motion Photos.</p>
+
+<h2>4. Duplicates come in two kinds</h2>
+<p><b>Exact copies</b> are the same file twice. Those are easy to spot and safe to remove. <b>Look-alikes</b> are the same picture saved at another size, or re-saved. Those need a decision: which one is the keeper?</p>
+<p><b>What we do:</b> Exact copies are found by their content, not their name. For look-alikes we show them side by side and suggest a keeper using rules you control (a favourite, an edit, more pixels, a bigger file, more information inside). Nothing is deleted without a preview. And when you have two places to check, such as a source and the copy you made of it, <b>Compare two places</b> shows what is the same and lets you clear the identical files from one side, after checking each one byte for byte.</p>
+
+<h2>5. Apple Photos does not tell you what it is doing</h2>
+<p>An import into Photos cannot be undone. Sending a huge library all at once can fill your Mac and confuse iCloud. And when iCloud stalls, the reason is buried in system logs that nobody reads.</p>
+<p><b>What we do:</b> We send your library in careful batches and wait for iCloud to keep up. We take a reading of how your library is doing every 15 minutes and show the trend. We read the hidden messages and explain them in plain words. And we are honest about it: Apple does not document most of these messages, so each explanation says how sure we are and where it came from.</p>
+
+<h2>6. Old libraries and tired drives</h2>
+<p>Photos from an old iPhoto or Aperture library are locked inside a folder only that program understood. And old drives stall: a copy gets stuck on one bad file and never finishes.</p>
+<p><b>What we do:</b> We read the old library's own records, so your albums, events, keywords and ratings come out with the photos. When a drive stops answering, we skip the stuck files after a short wait, carry on, list what we skipped, and try those last next time. There is a gentle mode for a drive that is struggling.</p>
+
+<h2>What we would tell a friend</h2>
+<ul class="ticks "><li><b>Back up first.</b> Keep your original Google Takeout until everything is checked in Photos.</li><li><b>Preview before you press go.</b> Always.</li><li><b>Copy, do not move.</b> You can always throw the copy away. You cannot un-delete.</li><li><b>Try 20 photos first</b> before sending thousands into Apple Photos.</li><li><b>Give iCloud days, not minutes.</b> Slow is not the same as stuck.</li><li><b>Do not trust a duplicate finder that deletes on its own.</b> Look at the keeper it picked.</li><li><b>If a drive hangs, stop.</b> Do not keep hammering it. Reconnect it, then run the copy again.</li></ul>
+<div class="callout"><b>We are not perfect, and we say so.</b> Some of what Photo Clinic tells you about Apple's messages is our best reading, not Apple's word. When that is the case, it says so. If something is wrong, <a href="mailto:thestocksoup@gmail.com">tell us</a>.</div>
+<div class="cta"><h2>Look at your library for free</h2><p class="sub">Download it, point it at your photos, and read the preview. That costs nothing and changes nothing.</p><a class="btn" href="https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg">Download for Mac</a><p class="note">Free &middot; Apple silicon Macs &middot; signed and checked by Apple</p></div><div class="next"><span></span><a href="tools.html">All tools &rarr;</a></div>
+<footer>
+<p>Photo Clinic is free to use, under the MIT licence. It is an independent project and is not affiliated with Google or Apple. Google, Google Photos, Apple, iCloud, iPhone and macOS are trademarks of their owners.</p>
+<p><a href="https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg">Download</a> &middot; <a href="versions.html">Release notes</a> &middot; <a href="safety.html">Safety</a> &middot; <a href="versions.html">Versions</a> &middot; <a href="privacy.html">Privacy</a></p>
+<p class="gcstats" id="gcstats" hidden></p>
+<script>
+(function(){try{var r=new XMLHttpRequest();r.addEventListener("load",function(){try{var j=JSON.parse(this.responseText),e=document.getElementById("gcstats");
+if(e&&j&&j.count!==undefined){e.textContent="Visitors: "+j.count_unique+" · Page views: "+j.count+" (counted by GoatCounter)";e.hidden=false}}catch(x){}});
+r.open("GET","https://photoclinic.goatcounter.com/counter/TOTAL.json");r.send()}catch(x){}})();
+</script>
+</footer>
+</main>
+</body>
+</html>

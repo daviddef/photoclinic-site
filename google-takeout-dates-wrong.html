@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Google Takeout photos show the wrong date - Photo Clinic</title>
+<meta name="description" content="Why Google Takeout photos show the wrong date, and how to put the real dates back on a Mac.">
+<link rel="canonical" href="https://photoclinic.org/google-takeout-dates-wrong.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Photo Clinic">
+<meta property="og:title" content="Google Takeout photos show the wrong date - Photo Clinic">
+<meta property="og:description" content="Why Google Takeout photos show the wrong date, and how to put the real dates back on a Mac.">
+<meta property="og:url" content="https://photoclinic.org/google-takeout-dates-wrong.html">
+<meta property="og:image" content="https://photoclinic.org/img/home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4156851882993001" crossorigin="anonymous"></script>
+<script data-goatcounter="https://photoclinic.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<nav><div><b><a href="index.html" style="text-decoration:none;color:inherit">Photo Clinic</a></b><a href="story.html">Our story</a><a href="tools.html">All tools</a><a href="fix-takeout.html">Google Takeout</a><a href="monitor.html">Monitor</a><a href="problems.html">Find problems</a><a href="tidy.html">Duplicates &amp; tidy</a><a href="old-libraries.html">Old libraries</a><a href="apple-photos.html">Apple Photos</a><a href="safety.html">Safety</a></div></nav>
+<main>
+<p class="crumb"><a href="index.html">&larr; Photo Clinic</a></p><div class="phead one"><div><p class="kicker">Answers</p><h1>Why do my Google Takeout photos show the wrong date?</h1><p class="lead">Short answer: Google stores the real date in a separate file, not in the photo. When you open the photo, your Mac shows the day you downloaded it.</p><a class="btn" href="https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg">Download for Mac</a></div></div><h2>What is going on</h2>
+<p>When Google Photos exports your library, each photo comes with a small <code>.json</code> file beside it. The real date and time the photo was taken, the place and the caption are in that file. The photo itself often has none of them. So Finder, Apple Photos and other programs fall back to the date the file was created: the day you downloaded it.</p>
+<h2>Why time zones make it worse</h2>
+<p>Google stores times in a universal clock (UTC). Your photo was taken in your local time. If the two are mixed up, a photo can be hours out, and sometimes lands on the wrong day.</p>
+<h2>What fixes it</h2>
+<ul class="ticks "><li>Read the date, place and caption from each photo's <code>.json</code> file.</li><li>Write them into the photo itself, so every program sees them.</li><li>Write local time with the right offset, not raw UTC.</li><li>Do this across all the zip files Google gave you, in one go.</li><li>Preview first: see what would change before anything does.</li></ul>
+<h2>What if a photo has no date at all?</h2>
+<p>Some photos have no usable date. Photo Clinic rebuilds one from the file name (such as <code>IMG_20190704_...</code>), neighbouring photos or the folder name, and labels it as a guess with how sure it is. A guess never replaces a real date.</p>
+<div class="callout"><b>Always copy first.</b> Photo Clinic makes the fixed copies in a new folder and leaves your Takeout alone. Keep the Takeout until you have checked the result.</div><h2>More answers</h2><ul class="ticks"><li><a href="google-takeout-json-files.html">What are the .json files in a Google Takeout?</a></li><li><a href="move-google-photos-to-apple-photos.html">How to move from Google Photos to Apple Photos</a></li><li><a href="icloud-photos-stuck-syncing.html">iCloud Photos stuck syncing on a Mac: slow or stuck?</a></li><li><a href="find-duplicate-photos-mac.html">How to find and remove duplicate photos on a Mac</a></li></ul><div class="cta"><h2>Look at your library for free</h2><p class="sub">Download it, point it at your photos, and read the preview. That costs nothing and changes nothing.</p><a class="btn" href="https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg">Download for Mac</a><p class="note">Free &middot; Apple silicon Macs &middot; signed and checked by Apple</p></div><div class="next"><a href="story.html">&larr; Our story</a><a href="tools.html">All tools &rarr;</a></div>
+<footer>
+<p>Photo Clinic is free to use, under the MIT licence. It is an independent project and is not affiliated with Google or Apple. Google, Google Photos, Apple, iCloud, iPhone and macOS are trademarks of their owners.</p>
+<p><a href="https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg">Download</a> &middot; <a href="versions.html">Release notes</a> &middot; <a href="safety.html">Safety</a> &middot; <a href="versions.html">Versions</a> &middot; <a href="privacy.html">Privacy</a></p>
+<p class="gcstats" id="gcstats" hidden></p>
+<script>
+(function(){try{var r=new XMLHttpRequest();r.addEventListener("load",function(){try{var j=JSON.parse(this.responseText),e=document.getElementById("gcstats");
+if(e&&j&&j.count!==undefined){e.textContent="Visitors: "+j.count_unique+" · Page views: "+j.count+" (counted by GoatCounter)";e.hidden=false}}catch(x){}});
+r.open("GET","https://photoclinic.goatcounter.com/counter/TOTAL.json");r.send()}catch(x){}})();
+</script>
+</footer>
+</main>
+</body>
+</html>
