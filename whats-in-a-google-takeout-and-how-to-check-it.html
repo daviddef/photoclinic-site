@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is in a Google Takeout of Google Photos, and how to check you have it all - Photo Clinic</title>
+<meta name="description" content="What the zip files, JSON files and folders in a Google Takeout of Google Photos are, why names are cut short, and how to check that every archive downloaded.">
+<link rel="canonical" href="https://photoclinic.org/whats-in-a-google-takeout-and-how-to-check-it.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Photo Clinic">
+<meta property="og:title" content="What is in a Google Takeout of Google Photos, and how to check you have it all - Photo Clinic">
+<meta property="og:description" content="What the zip files, JSON files and folders in a Google Takeout of Google Photos are, why names are cut short, and how to check that every archive downloaded.">
+<meta property="og:url" content="https://photoclinic.org/whats-in-a-google-takeout-and-how-to-check-it.html">
+<meta property="og:image" content="https://photoclinic.org/img/home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "What is in a Google Takeout of Google Photos, and how to check you have it all", "description": "What the zip files, JSON files and folders in a Google Takeout of Google Photos are, why names are cut short, and how to check that every archive downloaded.", "datePublished": "2026-10-26", "dateModified": "2026-10-26", "author": {"@type": "Organization", "name": "Photo Clinic"}, "publisher": {"@type": "Organization", "name": "Photo Clinic", "url": "https://photoclinic.org/"}, "mainEntityOfPage": "https://photoclinic.org/whats-in-a-google-takeout-and-how-to-check-it.html"}</script>
+<link rel="stylesheet" href="style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4156851882993001" crossorigin="anonymous"></script>
+<script data-goatcounter="https://photoclinic.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<nav><div><b><a href="index.html" style="text-decoration:none;color:inherit">Photo Clinic</a></b><a href="story.html">Our story</a><a href="tools.html">All tools</a><a href="guides.html">Guides</a><a href="copy-icloud-drive-to-external-drive-mac.html">Copy from the cloud</a><a href="fix-takeout.html">Google Takeout</a><a href="monitor.html">Monitor</a><a href="problems.html">Find problems</a><a href="tidy.html">Duplicates &amp; tidy</a><a href="old-libraries.html">Old libraries</a><a href="apple-photos.html">Apple Photos</a><a href="safety.html">Safety</a></div></nav>
+<main>
+<p class="crumb"><a href="index.html">&larr; Photo Clinic</a></p><div class="phead one"><div><p class="kicker">Guide</p><h1>What is in a Google Takeout of Google Photos, and how to check you have it all</h1><p class="lead">A Google Takeout arrives as a pile of zip files with strange names. Inside are your photos, and beside each one a small file of information. Here is what everything is, and how to be sure nothing is missing before you delete anything.</p><a class="btn" href="https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg">Download for Mac</a></div></div><p class="note" style="margin-top:0">Last reviewed 26 October 2026. Written by the Photo Clinic team from what we learned moving large photo libraries. See <a href="editorial-policy.html">how we write these guides</a>.</p><h2>The zip files</h2>
+<p>Google splits a large export into several archives. They are named like <code>takeout-20241027T093500Z-001.zip</code>, <code>-002.zip</code> and so on, in order. When you create the export you choose the archive size (for example 2 GB or 50 GB), so a big library can be dozens of zip files. If you chose to send them to Google Drive instead, they are files in a Drive folder, and Google emails you a list of links.</p>
+<p>Two limits catch people out. The download links <b>expire</b> after a few days, and each archive can only be downloaded a limited number of times. Download everything promptly, and keep the zip files until you have checked the result.</p>
+<h2>The folders inside</h2>
+<ul>
+<li><b>Photos from 2019</b> (one folder per year): every photo and video taken that year, in a flat list.</li>
+<li><b>Album folders</b>: one folder for each album you made. The same photo can appear in a year folder and in an album, so a Takeout holds more files than you have pictures.</li>
+<li><b>Trash, Archive and other folders</b> may appear, depending on what you exported.</li>
+</ul>
+<h2>The small JSON file beside each photo</h2>
+<p>Next to each picture is a file ending in <code>.json</code> (in newer exports, <code>.supplemental-metadata.json</code>). It holds what Google knows about the photo: the date it was taken, the place, the description, the people, and whether you marked it as a favourite. The photo itself often has none of this. That is why photos from a Takeout can show the day you downloaded them, with no place or caption, until something reads the JSON files and writes the information back.</p>
+<h2>Why some names look cut short</h2>
+<p>Google limits the length of these file names, so a long photo name is shortened, and the matching JSON name is shortened too, in a way that does not always line up. A tool that just adds <code>.json</code> to the photo name will miss some. Photo Clinic matches by several rules, including the shortened forms, numbered duplicates like <code>photo(1).jpg</code>, and edited copies.</p>
+<h2>Edited copies, Live Photos and Motion Photos</h2>
+<ul>
+<li>An edit you made in Google Photos appears as a second file with <code>-edited</code> in the name, next to the original.</li>
+<li>A Live Photo arrives as a still picture plus a separate short video with the same name.</li>
+<li>A Motion Photo from some Android phones has a video hidden inside the picture file.</li>
+</ul>
+<h2>How to check that you have everything</h2>
+<ol class="steps">
+<li><b>Count the zip files</b> against the number in Google's email or the export page. Check the numbers run without gaps (001, 002, 003 &hellip;).</li>
+<li><b>Check each zip opens.</b> A zip that stopped part-way will not open, or will report errors. Photo Clinic reads every zip and tells you which ones could not be read, so you can download only those again.</li>
+<li><b>Compare the picture count</b> with what Google Photos shows (allowing for the extra album copies and the -edited files).</li>
+<li><b>Keep the originals</b> until you have looked at the fixed copy and checked it in your photo app.</li>
+</ol>
+<div class="callout"><b>Photo Clinic never changes your zip files.</b> It reads them, and writes the fixed photos into a new folder you choose.</div><h2>Related</h2><ul class="ticks"><li><a href="how-to-fix-google-takeout-metadata-mac.html">How to fix Google Takeout metadata on a Mac</a></li><li><a href="google-takeout-json-files.html">What are all those .json files?</a></li><li><a href="download-google-drive-folder-mac.html">Download your Takeout files from Google Drive</a></li></ul><div class="cta"><h2>Look at your library for free</h2><p class="sub">Download it, point it at your photos, and read the preview. That costs nothing and changes nothing.</p><a class="btn" href="https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg">Download for Mac</a><p class="note">Free &middot; Apple silicon Macs &middot; signed and checked by Apple</p></div>
+<footer>
+<p>Photo Clinic is free to use, under the MIT licence. It is an independent project and is not affiliated with Google or Apple. Google, Google Photos, Apple, iCloud, iPhone and macOS are trademarks of their owners.</p>
+<p><a href="https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg">Download</a> &middot; <a href="guides.html">Guides</a> &middot; <a href="about.html">About</a> &middot; <a href="contact.html">Contact</a> &middot; <a href="editorial-policy.html">How we write</a> &middot; <a href="versions.html">Release notes</a> &middot; <a href="safety.html">Safety</a> &middot; <a href="privacy.html">Privacy</a></p>
+<p class="gcstats" id="gcstats" hidden></p>
+<script>
+(function(){try{var r=new XMLHttpRequest();r.addEventListener("load",function(){try{var j=JSON.parse(this.responseText),e=document.getElementById("gcstats");
+if(e&&j&&j.count!==undefined){e.textContent="Visitors: "+j.count_unique+" · Page views: "+j.count+" (counted by GoatCounter)";e.hidden=false}}catch(x){}});
+r.open("GET","https://photoclinic.goatcounter.com/counter/TOTAL.json");r.send()}catch(x){}})();
+</script>
+</footer>
+</main>
+</body>
+</html>

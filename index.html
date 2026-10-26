@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Photo Clinic: fix Google Takeout dates, find duplicates, check Apple Photos on Mac</title>
-<meta name="description" content="Photos is hard and leaving Google Photos is harder. Photo Clinic is a free Mac app that fixes your Google Takeout, finds duplicates, rescues old libraries and explains what Apple Photos and iCloud are doing.">
+<title>Photo Clinic: free Mac app for Google Takeout, iCloud Drive and Apple Photos</title>
+<meta name="description" content="A free Mac app that fixes Google Takeout photos, copies iCloud Drive and Google Drive to your drive, finds duplicates and shows what is not in Apple Photos yet.">
 <link rel="canonical" href="https://photoclinic.org/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Photo Clinic">
-<meta property="og:title" content="Photo Clinic: fix Google Takeout dates, find duplicates, check Apple Photos on Mac">
-<meta property="og:description" content="Photos is hard and leaving Google Photos is harder. Photo Clinic is a free Mac app that fixes your Google Takeout, finds duplicates, rescues old libraries and explains what Apple Photos and iCloud are doing.">
+<meta property="og:title" content="Photo Clinic: free Mac app for Google Takeout, iCloud Drive and Apple Photos">
+<meta property="og:description" content="A free Mac app that fixes Google Takeout photos, copies iCloud Drive and Google Drive to your drive, finds duplicates and shows what is not in Apple Photos yet.">
 <meta property="og:url" content="https://photoclinic.org/">
 <meta property="og:image" content="https://photoclinic.org/img/home.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Photo Clinic","applicationCategory":"MultimediaApplication","operatingSystem":"macOS","description":"A free Mac app that restores the dates, places and captions in a Google Takeout, finds duplicates, rescues old iPhoto and Aperture libraries, and explains what Apple Photos and iCloud are doing.","url":"https://photoclinic.org/","downloadUrl":"https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"license":"https://opensource.org/licenses/MIT"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Photo Clinic","applicationCategory":"MultimediaApplication","operatingSystem":"macOS","description":"A free Mac app that restores the dates, places and captions in a Google Takeout, copies iCloud Drive and Google Drive to your own drive, finds duplicates and damaged photos, shows which photos are not in Apple Photos yet, rescues old iPhoto and Aperture libraries, and explains what Apple Photos and iCloud are doing.","featureList":["Restore dates, places and captions from Google Takeout","Copy iCloud Drive to an external drive, slowly and safely, and fill the gaps in an earlier copy","Download a Google Drive folder, or Takeout files from an email, to your Mac","Find exact duplicates and look-alike photos","Find damaged or unreadable photos and rescue the good ones","Show which photos are not in Apple Photos yet","Send photos to Apple Photos in careful batches","Check Apple Photos and iCloud sync, and explain the errors","Rescue photos from old iPhoto and Aperture libraries","Convert old videos to MP4"],"url":"https://photoclinic.org/","downloadUrl":"https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"license":"https://opensource.org/licenses/MIT"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Photo Clinic free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Photo Clinic is free for Macs with Apple silicon, under the MIT licence."}}, {"@type": "Question", "name": "Does Photo Clinic upload my photos?", "acceptedAnswer": {"@type": "Answer", "text": "No. Your photos never leave your Mac. The only network use is checking for a new version and the Google Drive or iCloud copying you ask for."}}, {"@type": "Question", "name": "Can Photo Clinic copy iCloud Drive to an external drive?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It copies one file at a time, asks iCloud to send files that are only in the cloud, checks each copy, frees the space again, and carries on after any stop. It can also compare with an earlier copy and fill in only the gaps."}}, {"@type": "Question", "name": "How do I fix wrong dates in a Google Takeout?", "acceptedAnswer": {"@type": "Answer", "text": "Photo Clinic reads the .json files Google leaves beside each photo and writes the real date, place and caption back into a copy of the photo. It starts as a preview that changes nothing."}}, {"@type": "Question", "name": "Can it show which photos are not in Apple Photos yet?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It compares a folder with your Photos library, including pictures that exist only in iCloud, and shows what is already in Photos, what is a different version and what is missing."}}]}</script>
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4156851882993001" crossorigin="anonymous"></script>
 <script data-goatcounter="https://photoclinic.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
-<nav><div><b><a href="index.html" style="text-decoration:none;color:inherit">Photo Clinic</a></b><a href="story.html">Our story</a><a href="tools.html">All tools</a><a href="fix-takeout.html">Google Takeout</a><a href="monitor.html">Monitor</a><a href="problems.html">Find problems</a><a href="tidy.html">Duplicates &amp; tidy</a><a href="old-libraries.html">Old libraries</a><a href="apple-photos.html">Apple Photos</a><a href="safety.html">Safety</a></div></nav>
+<nav><div><b><a href="index.html" style="text-decoration:none;color:inherit">Photo Clinic</a></b><a href="story.html">Our story</a><a href="tools.html">All tools</a><a href="guides.html">Guides</a><a href="copy-icloud-drive-to-external-drive-mac.html">Copy from the cloud</a><a href="fix-takeout.html">Google Takeout</a><a href="monitor.html">Monitor</a><a href="problems.html">Find problems</a><a href="tidy.html">Duplicates &amp; tidy</a><a href="old-libraries.html">Old libraries</a><a href="apple-photos.html">Apple Photos</a><a href="safety.html">Safety</a></div></nav>
 <main>
 <section class="hero">
 <div>
@@ -33,6 +33,88 @@
 <figure><img class="shot" src="img/home.jpg" width="1185" height="1515" alt="The Photo Clinic home screen: what do you have, then six jobs"><figcaption>The home screen: start here, or pick a job.</figcaption></figure>
 </section>
 
+<h2 id="what-it-does">What Photo Clinic does</h2>
+<p class="sub">One free Mac app, in plain words. Every job starts with a preview that changes nothing. Pick what you need:</p>
+<div class="toc">
+<a href="#fix-google-takeout">Fix Google Takeout</a><a href="#copy-icloud-drive">Copy iCloud Drive</a><a href="#google-drive">Google Drive</a><a href="#not-in-photos">Not in Photos yet</a><a href="#duplicates">Duplicates</a><a href="#damaged">Damaged photos</a><a href="#organise">Organise</a><a href="#scan">One scan</a><a href="#send-to-photos">Apple Photos</a><a href="#watch">Watch iCloud</a><a href="#old-libraries">Old libraries</a><a href="#videos">Old videos</a><a href="#safe">Safe and private</a>
+</div>
+<div class="feats">
+
+<section class="feat" id="fix-google-takeout">
+<h3>Fix Google Takeout photos: put back the real dates, places and captions</h3>
+<p>When you export from Google Photos, the dates, places and captions come out in separate <code>.json</code> files and the photos themselves arrive bare, often showing the day you downloaded them. Photo Clinic reads those files and writes everything back into the pictures, across as many zip files as Google gave you.</p>
+<ul><li>Dates in the right local time, places, captions, people and favourites.</li><li>Live Photos paired again, hidden videos taken out of Motion Photos, edited copies matched to their originals.</li><li>Photos with no date get one worked out from the file name, the folder or the photos next to them, and each guess is labelled.</li></ul>
+<a class="more" href="fix-takeout.html">How the Takeout fix works &rarr;</a></section>
+
+<section class="feat" id="copy-icloud-drive">
+<h3>Copy iCloud Drive to an external drive, even when the files are only in iCloud</h3>
+<p>Big iCloud Drive folders do not copy well in Finder: files that are not downloaded fail, and you cannot tell what is missing. Photo Clinic copies slowly and carefully, one file at a time. It asks iCloud to send each file, copies it, checks it, then frees the space on your Mac again.</p>
+<ul><li><b>Carries on where it stopped</b> after a restart, a sleep or a closed lid.</li><li><b>Compares with an earlier copy</b> and shows exactly which files are missing or cut short, folder by folder, then copies only those gaps.</li><li>Shows the speed, the time left, and every file as it goes, with a link to the copied file.</li><li>Groups any problems by cause, in plain words, with what to do about each.</li></ul>
+<a class="more" href="copy-icloud-drive-to-external-drive-mac.html">How to copy iCloud Drive to an external drive &rarr;</a></section>
+
+<section class="feat" id="google-drive">
+<h3>Download a Google Drive folder, or your Takeout files from an email, to your Mac</h3>
+<p>Sign in with your own Google account, choose your own folders, and Photo Clinic copies them to the drive you choose. It can only read your Drive, never change it, and it carries on after any stop. Got an email with &ldquo;View 1 of 43 in Drive&rdquo; links? Paste the email and Photo Clinic finds every link, puts them in order and downloads them with a checklist.</p>
+<ul><li>Several files at once, with the speed and time left for each part.</li><li>Files that share a name in Drive are all kept.</li><li>Takeout links that must be opened in the browser are tracked for you: each finished file is moved into your folder and ticked off.</li></ul>
+<a class="more" href="download-google-drive-folder-mac.html">How to download from Google Drive &rarr;</a></section>
+
+<section class="feat" id="not-in-photos">
+<h3>See which photos are not in Apple Photos yet, before you import</h3>
+<p>Dragging a huge folder into Photos wastes hours when most of it is already there. Photo Clinic compares your folder with your Photos library, including pictures that live only in iCloud, and tells you what is already in, what is a different version, and what is really missing.</p>
+<ul><li>Side-by-side pictures of your file and the one in Photos, with links to both.</li><li>Copies only the missing ones into a new folder, named after the album that suits them best.</li><li>Can move the ones Photos already has out of the way. Nothing is deleted.</li></ul>
+<a class="more" href="photos-not-in-apple-photos.html">Find photos that are not in Apple Photos &rarr;</a></section>
+
+<section class="feat" id="duplicates">
+<h3>Find and clear duplicate photos, safely</h3>
+<p>Exact copies are found by their content, not their name, and moved into a spare folder, never deleted. Look-alikes (the same picture at another size or lightly edited) are shown side by side with a suggested keeper, and the same picture saved in more than one format is found too.</p>
+<ul><li>You can see both pictures, tick the one you prefer, and check again afterwards to be sure it worked.</li><li>Everything can be undone from Past runs.</li></ul>
+<a class="more" href="find-duplicate-photos-mac.html">How to find duplicate photos on a Mac &rarr;</a></section>
+
+<section class="feat" id="damaged">
+<h3>Find damaged or unreadable photos, and rescue the good ones</h3>
+<p>Photos that stopped short, empty files, and zips that did not finish downloading are found before they cause trouble, with the reason for each. If a drive is failing, Photo Clinic copies what still reads, gently, skips the stuck files and tries them last.</p>
+<a class="more" href="find-damaged-photos-mac.html">How to find damaged photos &rarr;</a></section>
+
+<section class="feat" id="organise">
+<h3>Organise a messy pile of folders, zips and old libraries into one dated library</h3>
+<p>Point Photo Clinic at a drive full of Takeout zips, loose folders and old libraries. It works out what each part is, copies everything into one library filed by year and month, keeps one copy of each picture and leaves your originals alone.</p>
+<a class="more" href="organise-photos-by-date-mac.html">Organise photos by date &rarr;</a></section>
+
+<section class="feat" id="scan">
+<h3>Check everything in one scan and get a plan</h3>
+<p>One button reads your folders and your library and gives a health score out of 100, then a plan: what would be fixed, what is duplicated, what is damaged, which videos will not play. Each line has <b>Show me</b> and <b>Do it now</b>, and you can check again to be sure it is done.</p>
+<a class="more" href="tools.html#check">The Check tab &rarr;</a></section>
+
+<section class="feat" id="send-to-photos">
+<h3>Send photos to Apple Photos in careful batches</h3>
+<p>Photos has no undo for imports and can choke on a big one. Photo Clinic sends your library oldest first in batches, keeps Live Photos together, turns folders into albums, and waits for iCloud to keep up before the next batch.</p>
+<a class="more" href="apple-photos.html">Moving into Apple Photos &rarr;</a></section>
+
+<section class="feat" id="watch">
+<h3>Watch Apple Photos and iCloud: is it syncing, or stuck?</h3>
+<p>A reading of how your library is doing every 15 minutes, a live meter of upload speed and what is waiting, and the hidden Photos and iCloud messages explained in plain words with steps to try. Apple's own status is one click away.</p>
+<a class="more" href="monitor.html">Monitor Photos and iCloud &rarr;</a> &middot; <a class="more" href="icloud-photos-stuck-syncing.html">Is iCloud Photos stuck? &rarr;</a></section>
+
+<section class="feat" id="old-libraries">
+<h3>Rescue photos from an old iPhoto or Aperture library</h3>
+<p>The library's own records are read, so albums, events, keywords and ratings come out with the pictures, even from an old or failing drive.</p>
+<a class="more" href="old-libraries.html">Old libraries &rarr;</a></section>
+
+<section class="feat" id="videos">
+<h3>Make old videos play: convert AVI, MPG, WMV, MTS and 3GP to MP4</h3>
+<p>Old camera and phone formats do not play everywhere or import into Photos. Photo Clinic converts them to MP4, without re-encoding when it can, and keeps your original or moves it aside, as you choose.</p>
+<a class="more" href="tools.html#videos">The Videos tool &rarr;</a></section>
+
+<section class="feat" id="safe">
+<h3>Safe by design: preview first, copy not move, nothing leaves your Mac</h3>
+<p>Every job starts as a preview that changes nothing. Files are copied, not moved, and nothing is deleted without you typing a confirmation. Your photos are never uploaded; the only network use is the Google and iCloud copying you ask for and checking for a new version.</p>
+<a class="more" href="safety.html">How we keep your photos safe &rarr;</a></section>
+</div>
+
+<h2>Free, and open</h2>
+<p class="sub">Photo Clinic is free under the MIT licence, for Macs with Apple silicon, signed and checked by Apple.</p>
+<p><a href="tools.html"><b>See every tool, one line each &rarr;</b></a></p>
+
 <h2>What went wrong for us</h2>
 <p class="sub">It is probably what is going wrong for you too.</p>
 <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr))">
@@ -43,18 +125,6 @@
 </div>
 <p><a href="story.html"><b>Read what we learned, in plain words &rarr;</b></a></p>
 
-<h2>All our lessons, in one app</h2>
-<p class="sub">You do not need to know where to start. <b>Start here</b> asks what you have, finds out what is wrong with it and makes a plan. Or pick a job yourself.</p>
-<div class="cards">
-<div class="card"><i>&#129529;</i><h3>Put your photos back together</h3><p>Dates, places and captions from your Google Takeout, written back into the photos. Live Photos paired again.</p><a class="more" href="fix-takeout.html">Google Takeout &rarr;</a></div>
-<div class="card"><i>&#129513;</i><h3>Find and remove duplicates</h3><p>Look-alike photos with a suggested keeper, and a way to compare two places and clear what is identical.</p><a class="more" href="tidy.html">Duplicates and tidy-up &rarr;</a></div>
-<div class="card"><i>&#128200;</i><h3>Watch Photos and iCloud</h3><p>Is it syncing, stuck or failing? A reading every 15 minutes, live messages, and Apple's own status.</p><a class="more" href="monitor.html">Monitor &rarr;</a></div>
-<div class="card"><i>&#129658;</i><h3>Find what is not right</h3><p>Reads the hidden Photos and iCloud messages, explains them in plain words, and gives step-by-step fixes.</p><a class="more" href="problems.html">Find problems &rarr;</a></div>
-<div class="card"><i>&#128230;</i><h3>Rescue an old library</h3><p>Get your photos, albums and keywords out of an old iPhoto or Aperture library, even from a failing drive.</p><a class="more" href="old-libraries.html">Old libraries &rarr;</a></div>
-<div class="card"><i>&#127759;</i><h3>Move into Apple Photos</h3><p>Sends your library in careful batches, oldest first, and waits for iCloud to keep up.</p><a class="more" href="apple-photos.html">Apple Photos &rarr;</a></div>
-</div>
-<p><a href="tools.html"><b>See every tool, one line each &rarr;</b></a></p>
-
 <h2>Questions we hear</h2>
 <ul class="ticks">
 <li><a href="how-to-fix-google-takeout-metadata-mac.html">How do I fix Google Takeout metadata on a Mac?</a></li>
@@ -63,6 +133,10 @@
 <li><a href="move-google-photos-to-apple-photos.html">How do I move from Google Photos to Apple Photos?</a></li>
 <li><a href="icloud-photos-stuck-syncing.html">Is iCloud Photos slow, or stuck?</a></li>
 <li><a href="find-duplicate-photos-mac.html">How do I find and remove duplicate photos on a Mac?</a></li>
+<li><a href="copy-icloud-drive-to-external-drive-mac.html">How do I copy iCloud Drive to an external drive on a Mac?</a></li>
+<li><a href="download-google-drive-folder-mac.html">How do I download a Google Drive folder, or my Takeout files from an email?</a></li>
+<li><a href="photos-not-in-apple-photos.html">How do I find which photos are not in Apple Photos yet?</a></li>
+<li><a href="find-damaged-photos-mac.html">How do I find damaged or unreadable photos?</a></li>
 </ul>
 
 <h2>How it works</h2>
@@ -75,7 +149,7 @@
 <div class="cta"><h2>Look at your library for free</h2><p class="sub">Download it, point it at your photos, and read the preview. That costs nothing and changes nothing.</p><a class="btn" href="https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg">Download for Mac</a><p class="note">Free &middot; Apple silicon Macs &middot; signed and checked by Apple</p></div>
 <footer>
 <p>Photo Clinic is free to use, under the MIT licence. It is an independent project and is not affiliated with Google or Apple. Google, Google Photos, Apple, iCloud, iPhone and macOS are trademarks of their owners.</p>
-<p><a href="https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg">Download</a> &middot; <a href="versions.html">Release notes</a> &middot; <a href="safety.html">Safety</a> &middot; <a href="versions.html">Versions</a> &middot; <a href="privacy.html">Privacy</a></p>
+<p><a href="https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg">Download</a> &middot; <a href="guides.html">Guides</a> &middot; <a href="about.html">About</a> &middot; <a href="contact.html">Contact</a> &middot; <a href="editorial-policy.html">How we write</a> &middot; <a href="versions.html">Release notes</a> &middot; <a href="safety.html">Safety</a> &middot; <a href="privacy.html">Privacy</a></p>
 <p class="gcstats" id="gcstats" hidden></p>
 <script>
 (function(){try{var r=new XMLHttpRequest();r.addEventListener("load",function(){try{var j=JSON.parse(this.responseText),e=document.getElementById("gcstats");

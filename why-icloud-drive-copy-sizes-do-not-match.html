@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Why the size and file count do not match after copying iCloud Drive - Photo Clinic</title>
+<meta name="description" content="Why a copy of an iCloud Drive folder has a different size or file count, and how to find which files are missing: placeholders, hidden files and file systems.">
+<link rel="canonical" href="https://photoclinic.org/why-icloud-drive-copy-sizes-do-not-match.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Photo Clinic">
+<meta property="og:title" content="Why the size and file count do not match after copying iCloud Drive - Photo Clinic">
+<meta property="og:description" content="Why a copy of an iCloud Drive folder has a different size or file count, and how to find which files are missing: placeholders, hidden files and file systems.">
+<meta property="og:url" content="https://photoclinic.org/why-icloud-drive-copy-sizes-do-not-match.html">
+<meta property="og:image" content="https://photoclinic.org/img/home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Why the size and file count do not match after copying iCloud Drive", "description": "Why a copy of an iCloud Drive folder has a different size or file count, and how to find which files are missing: placeholders, hidden files and file systems.", "datePublished": "2026-10-26", "dateModified": "2026-10-26", "author": {"@type": "Organization", "name": "Photo Clinic"}, "publisher": {"@type": "Organization", "name": "Photo Clinic", "url": "https://photoclinic.org/"}, "mainEntityOfPage": "https://photoclinic.org/why-icloud-drive-copy-sizes-do-not-match.html"}</script>
+<link rel="stylesheet" href="style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4156851882993001" crossorigin="anonymous"></script>
+<script data-goatcounter="https://photoclinic.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<nav><div><b><a href="index.html" style="text-decoration:none;color:inherit">Photo Clinic</a></b><a href="story.html">Our story</a><a href="tools.html">All tools</a><a href="guides.html">Guides</a><a href="copy-icloud-drive-to-external-drive-mac.html">Copy from the cloud</a><a href="fix-takeout.html">Google Takeout</a><a href="monitor.html">Monitor</a><a href="problems.html">Find problems</a><a href="tidy.html">Duplicates &amp; tidy</a><a href="old-libraries.html">Old libraries</a><a href="apple-photos.html">Apple Photos</a><a href="safety.html">Safety</a></div></nav>
+<main>
+<p class="crumb"><a href="index.html">&larr; Photo Clinic</a></p><div class="phead one"><div><p class="kicker">Guide</p><h1>Why the size and file count do not match after copying iCloud Drive</h1><p class="lead">You copied a big iCloud Drive folder to an external drive and the two folders show different sizes and different numbers of files. Some of that is normal. Some of it means files are missing. Here is how to tell which.</p><a class="btn" href="https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg">Download for Mac</a></div></div><p class="note" style="margin-top:0">Last reviewed 26 October 2026. Written by the Photo Clinic team from what we learned moving large photo libraries. See <a href="editorial-policy.html">how we write these guides</a>.</p><h2>1. Files that are only in iCloud</h2>
+<p>With <b>Optimise Mac Storage</b> on, many iCloud Drive files are not on your Mac at all. They show a cloud icon, and the Mac only holds a small placeholder. Finder shows the full size of such a file, but it takes almost no space on disk. To copy it, macOS first has to download it. If the download is slow, you are offline, or the file is huge, Finder may stop, show an error, or skip it. This is the most common reason a copy comes out short.</p>
+<p>Check: in Finder, a small cloud icon with a down arrow beside a name means the file is not downloaded.</p>
+<h2>2. Size and &ldquo;size on disk&rdquo; are different numbers</h2>
+<p>Get Info shows two sizes. <b>Size</b> is how many bytes the files contain. <b>Size on disk</b> is how much space they occupy, rounded up to the drive's allocation unit. Many small files take more space on a drive with a big allocation unit (exFAT drives can use units far larger than a Mac's own drive), so a folder can look larger on the copy while holding the same files. Compare <b>Size</b>, not <b>Size on disk</b>.</p>
+<h2>3. Hidden files change the count</h2>
+<ul>
+<li><b>.DS_Store</b> files hold Finder's view settings for each folder. They are created and removed freely.</li>
+<li><b>._name</b> files (called AppleDouble files) appear when you copy to a drive that is not formatted for Macs, such as FAT or exFAT. They hold extra Mac information for the file next to them. They add to the file count and are not a sign of a problem.</li>
+<li>Finder's item counts leave hidden files out, but Terminal's counts include them. Counting in two different ways produces two different numbers.</li>
+</ul>
+<h2>4. Packages are one item that holds many files</h2>
+<p>A <b>.pages</b> or <b>.numbers</b> document, a <b>.photoslibrary</b>, or an app, looks like one file in Finder but is really a folder full of files. A tool that counts one will not match a tool that counts the other.</p>
+<h2>5. Names the destination cannot hold</h2>
+<p>Some file systems refuse certain characters, very long names, or treat accented letters differently from the Mac. A file with a name the destination cannot store can fail to copy, or arrive under a slightly different name. If you see &ldquo;file not found&rdquo; for a name that looks fine, this is a likely reason.</p>
+<h2>6. Files that changed or moved during the copy</h2>
+<p>iCloud Drive keeps syncing while you copy. A file you moved or deleted after the copy began cannot be found any more, which produces a &ldquo;file not found&rdquo; message. Those are harmless, but they add up when you move many files.</p>
+<h2>How to find exactly what is missing</h2>
+<p>Do not compare folder sizes. Compare lists of files. Two ways:</p>
+<ol class="steps">
+<li><b>In Terminal.</b> Count real files on each side, leaving out the .DS_Store noise: <code>find "SOURCE" -type f ! -name ".DS_Store" | wc -l</code> and the same for the copy. To list the differences, compare the relative paths of both sides with <code>diff</code>. On older versions of macOS, files that are not downloaded appear in Terminal as small <code>.name.icloud</code> placeholder files.</li>
+<li><b>With Photo Clinic.</b> Open <b>Copy from the cloud</b>, tick the same folders, and press <b>Compare with what is already copied</b>. It looks at your existing copy wherever it is, and shows how many files are already there with the right size, which are missing, which are cut short, and which exist only in the copy, folder by folder. Then <b>Copy the gaps</b> copies only those files.</li>
+</ol>
+<div class="callout"><b>A file with the same name and a smaller size is a cut-short copy.</b> Compare sizes as well as names: a copy that stopped part-way leaves a file that exists but is not complete.</div><h2>Related</h2><ul class="ticks"><li><a href="copy-icloud-drive-to-external-drive-mac.html">How to copy iCloud Drive to an external drive on a Mac</a></li><li><a href="download-google-drive-folder-mac.html">Download a Google Drive folder to your Mac</a></li><li><a href="find-damaged-photos-mac.html">Find damaged or unreadable photos</a></li></ul><div class="cta"><h2>Look at your library for free</h2><p class="sub">Download it, point it at your photos, and read the preview. That costs nothing and changes nothing.</p><a class="btn" href="https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg">Download for Mac</a><p class="note">Free &middot; Apple silicon Macs &middot; signed and checked by Apple</p></div>
+<footer>
+<p>Photo Clinic is free to use, under the MIT licence. It is an independent project and is not affiliated with Google or Apple. Google, Google Photos, Apple, iCloud, iPhone and macOS are trademarks of their owners.</p>
+<p><a href="https://github.com/daviddef/photoclinic-releases/releases/latest/download/PhotoClinic-arm64.dmg">Download</a> &middot; <a href="guides.html">Guides</a> &middot; <a href="about.html">About</a> &middot; <a href="contact.html">Contact</a> &middot; <a href="editorial-policy.html">How we write</a> &middot; <a href="versions.html">Release notes</a> &middot; <a href="safety.html">Safety</a> &middot; <a href="privacy.html">Privacy</a></p>
+<p class="gcstats" id="gcstats" hidden></p>
+<script>
+(function(){try{var r=new XMLHttpRequest();r.addEventListener("load",function(){try{var j=JSON.parse(this.responseText),e=document.getElementById("gcstats");
+if(e&&j&&j.count!==undefined){e.textContent="Visitors: "+j.count_unique+" · Page views: "+j.count+" (counted by GoatCounter)";e.hidden=false}}catch(x){}});
+r.open("GET","https://photoclinic.goatcounter.com/counter/TOTAL.json");r.send()}catch(x){}})();
+</script>
+</footer>
+</main>
+</body>
+</html>

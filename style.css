@@ -54,6 +54,7 @@ details p{margin:8px 0 0;color:var(--mute)}
 .relhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
 .reldate{color:var(--mute);font-size:14px}
 .rel{border-top:1px solid var(--line);margin-top:32px;padding-top:4px}
+.feats{margin-top:8px}.feat{border-top:1px solid var(--line);padding:22px 0 18px}.feat h3{font-size:22px;line-height:1.25;margin:0 0 8px}.feat p{margin:0 0 8px;font-size:17px}.feat ul{margin:6px 0 8px 0;padding-left:22px}.feat li{margin:4px 0}.feat .more{font-weight:700;text-decoration:none}.toc{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}.toc a{background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14.5px;text-decoration:none;font-weight:600;color:var(--ink)}.toc a:hover{border-color:var(--acc);color:var(--acc)}.faq h3{font-size:18px;margin:18px 0 4px}
 .cta{text-align:center;margin-top:56px;padding:32px 20px;background:var(--soft);border:1px solid var(--line);border-radius:22px}
 .cta h2{margin-top:0}
 .next{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:40px;font-weight:700}
