@@ -916,10 +916,13 @@ def release(ver, date, tag, note, items, latest=False):
     return '<section class="rel" id="v%s"><div class="relhead"><h2>%s%s</h2><span class="reldate">%s</span></div><p class="sub">%s</p>%s<p><a href="https://github.com/daviddef/photoclinic-releases/releases/download/%s/PhotoClinic-%s-arm64.dmg">Download %s</a></p></section>' % (ver, ver, badge, date, note, items, tag, ver, ver)
 
 b = head("Versions", "What is new in each version", "Every release, newest first. The app tells you when an update is ready, so you never have to check.")
+b += release("1.0.123", "7 November 2026", "v1.0.123", "The Photos step stops with a plain message when the Mac's disk is full.", ticks([
+  "<b>A full startup disk is caught before Photos refuses everything.</b> When Photos has no room to copy files in, it refuses whole batches with Unknown error. The step now stops at the start if free space is below Keep at least this many GB free, whatever the wait setting, and says how much is free and what to do.",
+  "<b>A batch Photos refuses on a nearly full disk is explained.</b> The message now names the full disk instead of a general list of causes."]), latest=True)
 b += release("1.0.122", "7 November 2026", "v1.0.122", "The Photos import checks an old list by itself, and Unzip stays off when there is nothing to unzip.", ticks([
   "<b>An old Photos import list is checked once, automatically.</b> A list written by an older version counted files Photos had refused as sent, so a run could say 0 files left. Photo Clinic now checks such a list against Photos once, sends the missing files again and notes it in the result. After that the list is trusted and no check is needed.",
   "<b>First check what Photos really has switches itself off</b> after it has run, so it no longer stays ticked on every run.",
-  "<b>Unzip Takeout starts switched off when your folders hold no zip files</b>, including when fixing in place."]), latest=True)
+  "<b>Unzip Takeout starts switched off when your folders hold no zip files</b>, including when fixing in place."]), latest=False)
 b += release("1.0.121", "7 November 2026", "v1.0.121", "The Fix step no longer hunts for exact copies when it is only fixing in place.", ticks([
   "<b>No more Finding exact duplicates during a metadata fix.</b> The workflow Fix step used a hidden Remove exact copies setting from the Fix tool, which fingerprinted every file on the drive before it started. It now does that only when it is making copies; Remove duplicates is its own step."]), latest=False)
 b += release("1.0.120", "8 November 2026", "v1.0.120", "Later steps follow a renamed source folder, and the Photos import keeps its list after a rename.", ticks([
