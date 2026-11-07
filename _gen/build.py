@@ -916,10 +916,15 @@ def release(ver, date, tag, note, items, latest=False):
     return '<section class="rel" id="v%s"><div class="relhead"><h2>%s%s</h2><span class="reldate">%s</span></div><p class="sub">%s</p>%s<p><a href="https://github.com/daviddef/photoclinic-releases/releases/download/%s/PhotoClinic-%s-arm64.dmg">Download %s</a></p></section>' % (ver, ver, badge, date, note, items, tag, ver, ver)
 
 b = head("Versions", "What is new in each version", "Every release, newest first. The app tells you when an update is ready, so you never have to check.")
+b += release("1.0.125", "8 November 2026", "v1.0.125", "Unzip on a Synology NAS, so the zips are not pulled over the network.", ticks([
+  "<b>Unzip on the NAS.</b> If your zips are on a Synology NAS you opened as a network drive, the Unzip step can ask the NAS to unpack them itself. Sign in once with an account made for Photo Clinic; the password is kept in your Mac's Keychain. The step explains how to make the account.",
+  "<b>Delete the zip files once each is unpacked and checked works on the NAS too.</b> The NAS deletes a zip only after it passes the check, so it does not fill up with both copies. A zip that fails the check is kept and listed.",
+  "<b>Clear progress.</b> The status shows zip 12 of 933, how many are done and kept, and the time left, with one line per zip. A dropped network is waited out.",
+  "<b>A permission error on a network drive is explained.</b> Photo Clinic now says which macOS setting to turn on, or to sign in to the share as a user and not as Guest."]), latest=True)
 b += release("1.0.124", "7 November 2026", "v1.0.124", "The Photos check no longer sends photos Photos already has under a copy number.", ticks([
   "<b>Photos already holding a photo as IMG_1 (2).JPG is recognised.</b> A second import gives a photo a copy number, so the check saw it as missing, sent it again, and Photos refused it with Unknown error. The check now ignores the copy number when the size is the same.",
   "<b>A copy-number match must also have the same capture time.</b> The time is read from the file and compared with Photos, allowing for time zones. A file with no readable time is not counted as already there, so a wrong match cannot leave a photo out.",
-  "<b>The result says how many photos were matched this way.</b>"]), latest=True)
+  "<b>The result says how many photos were matched this way.</b>"]), latest=False)
 b += release("1.0.123", "7 November 2026", "v1.0.123", "The Photos step stops with a plain message when the Mac's disk is full.", ticks([
   "<b>A full startup disk is caught before Photos refuses everything.</b> When Photos has no room to copy files in, it refuses whole batches with Unknown error. The step now stops at the start if free space is below Keep at least this many GB free, whatever the wait setting, and says how much is free and what to do.",
   "<b>A batch Photos refuses on a nearly full disk is explained.</b> The message now names the full disk instead of a general list of causes."]), latest=False)
