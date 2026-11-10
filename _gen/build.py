@@ -916,12 +916,15 @@ def release(ver, date, tag, note, items, latest=False):
     return '<section class="rel" id="v%s"><div class="relhead"><h2>%s%s</h2><span class="reldate">%s</span></div><p class="sub">%s</p>%s<p><a href="https://github.com/daviddef/photoclinic-releases/releases/download/%s/PhotoClinic-%s-arm64.dmg">Download %s</a></p></section>' % (ver, ver, badge, date, note, items, tag, ver, ver)
 
 b = head("Versions", "What is new in each version", "Every release, newest first. The app tells you when an update is ready, so you never have to check.")
+b += release("1.0.129", "10 November 2026", "v1.0.129", "A stray zip no longer stops Fix, and Tidy can move non-photo files aside.", ticks([
+  "<b>A small stray zip no longer stops Fix in place.</b> A zip under 100 MB that is not a Google Takeout (one photo someone zipped) is left alone and named in the result. Takeout zips and large zips still stop it, and the error now lists which zips they are.",
+  "<b>Move non-photo files into _other_files.</b> A new Tidy option moves PDFs, documents, notes and stray zips into an _other_files folder inside the folder you chose, keeping their sub-folders. Nothing is deleted. Photos, videos, Google info files, junk and Takeout zips stay. The preview lists every file first."]), latest=True)
 b += release("1.0.128", "8 November 2026", "v1.0.128", "Deleting zips as they go works, Stop answers, and the Unzip settings are shorter.", ticks([
   "<b>Delete as they go uses a plain confirmation.</b> The box that asked you to type DELETE would not open on some Macs, so Run did nothing. It is now an ordinary box with a red warning and a Delete as they go button. A zip is still deleted only after every file in it is unpacked and checked.",
   "<b>A failed start tells you why.</b> If Run or Preview cannot start, a message says so for a few seconds instead of nothing happening.",
   "<b>Stop answers at once.</b> The step says it is stopping, and a big zip no longer has to finish its check first. The Stop button says Stop preview only for a preview.",
   "<b>Select all and Select none</b> for the steps, next to the count of ticked steps.",
-  "<b>Shorter Unzip settings.</b> Short option names, one line for the folder and the NAS, and a quieter footer."]), latest=True)
+  "<b>Shorter Unzip settings.</b> Short option names, one line for the folder and the NAS, and a quieter footer."]), latest=False)
 b += release("1.0.127", "8 November 2026", "v1.0.127", "Fix reads folders whose zips are already unpacked, and Unzip can check its work.", ticks([
   "<b>Fix no longer stops on zips that are already unpacked.</b> If a folder holds both the zips and the unpacked files, the zips are left out and the unpacked files are fixed. Before, it said zip files cannot be fixed in place. A zip that is not fully unpacked still stops the run, and the result says how many were left out.",
   "<b>Only check.</b> A new tick in the Unzip step compares every file name and size in each zip with the folder and lists anything missing or the wrong size. It changes and deletes nothing, even when the delete option is on."]), latest=False)
